@@ -1,5 +1,5 @@
 :root {
-  --zeviooColor: rgb(240, 106, 116);
+  --zeviooColor: rgb(255, 13, 97);
   --green : rgb(82, 185, 82);
   --blue : rgb(55, 150, 253);
   --red : hsl(15, 80%, 50%);
@@ -107,7 +107,12 @@ span.zevioo-loading__6 {-webkit-animation-delay: 0;animation-delay: 0;-ms-animat
   font-size: 16px;
 }
 span.zevioo-title {
-  color: var(--pink);
+  margin-left: 5px;
+  font-weight: 100;
+}
+img.zevioo-logo {
+  height: 16px;
+  margin-left: 10px;
 }
 
 
@@ -119,7 +124,7 @@ span.zevioo-title {
 
 .zevioo-clickable {
   cursor: pointer;
-  font-size: 12px;
+  font-size: 10px;
 }
 
 .zevioo-portlet {
@@ -132,7 +137,7 @@ span.zevioo-title {
   padding: 0px;
 }
 .zevioo-product-review {
-  background-color: var(--white);
+  background-color: transparent;
 }
 .zevioo-about-product {
   
@@ -169,10 +174,11 @@ span.zevioo-title {
   display: flex;
   justify-content: space-around;
   flex-flow: row wrap;
-  height: 200px;
-  max-width: 1400px;
+  height: auto;
+  max-width: 100%;
   margin: auto;
 }
+
 .zevioo-rating__avg,
 .zevioo-rating__counter,
 .zevioo-product-score,
@@ -181,12 +187,27 @@ span.zevioo-title {
 .zevioo-product-review-actions {
   height: auto; /* Or whatever */
   margin: auto;  /* Magic! */
-  padding: 0 5px;
+  margin-left: 0;
+}
+.zevioo-rating__avg {
+  margin-left: 0;
+
+}
+.zevioo-product-score {
+  margin-top: 0;
+}
+.zevioo-counter__text {
+  display: inline-block;
+  margin-right: 20px;
+}
+.zevioo-filter-bar {
+  display: inline-block;
+  text-align: right;
 }
 .zevioo-avg-text {
-  font-size: 50px;
-  line-height: 1em;
-  text-align: center;
+  font-size: 80px;
+  line-height: 0;
+  text-align: left;
 }
 .zevioo-avg-text span,
 .zevioo-counter__text {
@@ -195,23 +216,26 @@ span.zevioo-title {
 }
 
 @media (max-width: 600px) {
-  .zevioo-product-rating {
-      flex-direction: column;
-      height: auto;
+.zevioo-product-rating {
+    flex-direction: column;
+    height: auto;
+}
+.zevioo-product-score {
+    margin-bottom: 5% !important;
+}
+.zevioo-product-score,
+.zevioo-product-score-details {
+    height: auto; /* Or whatever */
+    margin: auto;  /* Magic! */
   }
-  .zevioo-product-score {
-      margin-bottom: 5% !important;
-  }
-  .zevioo-product-score,
-  .zevioo-product-score-details {
-      height: auto; /* Or whatever */
-      margin: auto;  /* Magic! */
-    }
-  .zevioo-progress-score {
-    height: 12px !important;
-  }
-  .zevioo-star-value span {
-    font-size: 12px;
+
+.zevioo-progress-score {
+  height: 10px !important;
+}
+
+.zevioo-star-value span,
+.zevioo-bar-value span {
+  font-size: 12px;
 }
 .zevioo-rating__avg,
 .zevioo-product-score-details,
@@ -254,7 +278,7 @@ span.zevioo-title {
 }
 .zevioo-progress-score {
   display: block;
-  height: 15px;
+  height: 10px;
   background: var(--softBlack);
 }
 
@@ -273,9 +297,13 @@ div#star-0 p {
   display: inline-block;
   padding-right: 20px;
 }
-.zevioo-star-value {
+.zevioo-star-value,
+.zevioo-bar-value {
   display: inline-block;
   padding-left: 20px;
+}
+.zevioo-star-value {
+  display: none !important;
 }
 
 .zevioo-star-ratings {
@@ -310,8 +338,7 @@ div#star-0 p {
 
 /* Latest Reviews */
 .zevioo-h3 {
-  margin-top: 50px;
-  margin-bottom: 0;
+  margin-bottom: 20px;
   font-size: 16px;
 }
 
@@ -430,12 +457,13 @@ p.zevioo-review-negative,
 p.zevioo-review-positive,
 p.zevioo-review-negative {
   font-weight: 100;
+  margin: 5px 0;
 }
 
 p .zevioo-positive {
   display: inline-block;
   content: " + ";
-  font-size: 20px;
+  font-size: 25px;
   color: var(--green);
   width: 1rem;
 }
@@ -443,7 +471,7 @@ p .zevioo-positive {
 p .zevioo-negative {
   display: inline-block;
   content: " - ";
-  font-size: 20px;
+  font-size: 25px;
   color: var(--red);
   width: 1rem;
 }
@@ -455,6 +483,9 @@ p .zevioo-negative {
 }
 .zevioo-product-score .zevioo-product-score-bar {
   display: block;
+}
+.zevioo-product-score .zevioo-product-score-bar:nth-child(2) {
+  padding-top: 5px;
 }
 
 .zevioo-review-bar-title p {
@@ -519,11 +550,12 @@ span.zevioo-box-5 {
   margin-right: 5px;
 }
 .zevioo-product-bar-title p {
+  margin-top: 0;
   margin-bottom: 0;
   font-size: 11px;
 }
 .zevioo-review-bar-box .zevioo-progress-score {
-  height: 12px;
+  height: 10px;
 }
 
 /* toolTip */
@@ -531,7 +563,7 @@ span.zevioo-box-5 {
   position: relative;
 }
 .zevioo-product-score-details .zevioo-progress-score {
-height: 12px;
+height: 10px;
 }
 .zevioo-product-score-details:hover .zevioo-tooltip {
   transition-duration: 0.2s;
@@ -593,12 +625,25 @@ height: 12px;
   .zevioo-star-num {
       padding-right: 5px;
   }
-  .zevioo-star-value {
+  .zevioo-star-value,
+  .zevioo-bar-value {
       padding-left: 5px;
   }
 }
 
 /* Button Zevioo */
+
+.zevioo-button.zevioo-ask {
+  display: inline-block;
+  margin-right: 10px;
+  min-width: 120px;
+  text-align: center;
+}
+.zevioo-button.zevioo-make-review {
+  display: inline-block;
+  min-width: 120px;
+  text-align: center;
+}
 .zevioo-button {
     font-size: 16px;
     color: var(--white);
@@ -704,6 +749,7 @@ label.zevioo-label-medium {
 }
 .zevioo-rating__quality__money {
   text-align: left;
+  margin-bottom: 20px;
 }
 
 .zevioo-form {

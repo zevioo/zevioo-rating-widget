@@ -522,7 +522,7 @@ class WriteReview extends Component {
                                 changed={(event) => this.inputChangedHandler(event, 'gender')} />
                             </div>
                             <div className="zevioo-form-group__actions">
-                                <input type="submit" className="zevioo-button" value="Post" disabled={!this.state.formIsValid} />
+                                <input type="submit" className="zevioo-button" value="Post" />
                                 <button className="zevioo-button" id="cancel-form" onClick={this.props.click}>Cancel</button>
                             </div>
                         </div>

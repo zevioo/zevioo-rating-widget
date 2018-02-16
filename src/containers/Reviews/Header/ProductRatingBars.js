@@ -14,7 +14,7 @@ const productRatingBars = (props) => {
                         <div className="zevioo-score-graph">
                         <div className="zevioo-progress-score" style={{width: percentage(props.qualityRT, 5)+'%'}}></div>
                         </div>
-                        <div className="zevioo-star-value"><span> {props.qualityRT} </span></div>
+                        <div className="zevioo-bar-value"><span> {props.qualityRT} </span></div>
                     </div>
                 </div>
                 <div className="zevioo-product-score-bar">
@@ -25,7 +25,7 @@ const productRatingBars = (props) => {
                         <div className="zevioo-score-graph">
                         <div className="zevioo-progress-score" style={{width: percentage(props.valueRT, 5)+'%'}}></div>
                         </div>
-                        <div className="zevioo-star-value"><span> {props.valueRT} </span></div>
+                        <div className="zevioo-bar-value"><span> {props.valueRT} </span></div>
                     </div>
                 </div>
             </div>

@@ -14,10 +14,10 @@ const reviewsHeader = (props) => {
                 <div className="zevioo-product-rating zevioo-clearfix">
                     <ProductRatingAvg 
                         OR={props.obj.OR}
-                        RC={props.obj.RC}
                         />
                     <ProductScoreBars 
                         stars={props.obj}
+                        RC={props.obj.RC}
                         click={props.filterClick}
                         />
                     <ProductRatingBars 
