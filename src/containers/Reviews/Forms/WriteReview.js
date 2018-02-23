@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Input from '../../../components/UI/Input/Input';
 import {userStarRating, userQualityRating, userValueRating} from'../../../helpers/Helpers';
+import Loading from '../../../components/Loading/Loading';
+import Close from '../../../components/Svg/close.svg';
 
 class WriteReview extends Component {
     state = {
@@ -105,8 +107,7 @@ class WriteReview extends Component {
                     className: 'zevioo-form-input',
                     name: 'title_review',
                     type: 'text',
-                    maxLength: '150',
-                    placeholder: 'Τι τίτλο θα δίνατε στην αξιολόγηση σας;'
+                    maxLength: '150'
                 },
                 value: '',
                 validation: {
@@ -162,102 +163,13 @@ class WriteReview extends Component {
                 },
                 valid: false
             },
-            gender: {
-                elementType: 'select',
-                elementConfig: {
-                    className: 'zevioo-select',
-                    name: 'user_gender', 
-                    id: 'user_gender',
-                    options: [
-                        {value: 'Άνδρας', displayValue: 'Άνδρας'},
-                        {value: 'Γυναίκα', displayValue: 'Γυναίκα'}
-                    ]
-                },
-                value: 'Άνδρας',
-                validation: {
-                    required: false
-                },
-                valid: true
-            },
             age: {
-                elementType: 'select',
+                elementType: 'number',
                 elementConfig: {
-                    className: 'zevioo-select',
+                    className: 'zevioo-form-input user-age',
                     name: 'year_birth', 
-                    id: 'user_year',
-                    options: [
-                        {value: '2010', displayValue: '2010'},
-                        {value: '2009', displayValue: '2009'},
-                        {value: '2008', displayValue: '2008'},
-                        {value: '2007', displayValue: '2007'},
-                        {value: '2006', displayValue: '2006'},
-                        {value: '2005', displayValue: '2005'},
-                        {value: '2004', displayValue: '2004'},
-                        {value: '2003', displayValue: '2003'},
-                        {value: '2002', displayValue: '2002'},
-                        {value: '2001', displayValue: '2001'},
-                        {value: '2000', displayValue: '2000'},
-                        {value: '1999', displayValue: '1999'},
-                        {value: '1998', displayValue: '1998'},
-                        {value: '1997', displayValue: '1997'},
-                        {value: '1996', displayValue: '1996'},
-                        {value: '1995', displayValue: '1995'},
-                        {value: '1994', displayValue: '1994'},
-                        {value: '1993', displayValue: '1993'},
-                        {value: '1992', displayValue: '1992'},
-                        {value: '1991', displayValue: '1991'},
-                        {value: '1990', displayValue: '1990'},
-                        {value: '1989', displayValue: '1989'},
-                        {value: '1988', displayValue: '1988'},
-                        {value: '1987', displayValue: '1987'},
-                        {value: '1986', displayValue: '1986'},
-                        {value: '1985', displayValue: '1985'},
-                        {value: '1984', displayValue: '1984'},
-                        {value: '1983', displayValue: '1983'},
-                        {value: '1982', displayValue: '1982'},
-                        {value: '1981', displayValue: '1981'},
-                        {value: '1980', displayValue: '1980'},
-                        {value: '1979', displayValue: '1979'},
-                        {value: '1978', displayValue: '1978'},
-                        {value: '1977', displayValue: '1977'},
-                        {value: '1976', displayValue: '1976'},
-                        {value: '1975', displayValue: '1975'},
-                        {value: '1974', displayValue: '1974'},
-                        {value: '1973', displayValue: '1973'},
-                        {value: '1972', displayValue: '1972'},
-                        {value: '1971', displayValue: '1971'},
-                        {value: '1970', displayValue: '1970'},
-                        {value: '1969', displayValue: '1969'},
-                        {value: '1968', displayValue: '1968'},
-                        {value: '1967', displayValue: '1967'},
-                        {value: '1966', displayValue: '1966'},
-                        {value: '1965', displayValue: '1965'},
-                        {value: '1964', displayValue: '1964'},
-                        {value: '1963', displayValue: '1963'},
-                        {value: '1962', displayValue: '1962'},
-                        {value: '1961', displayValue: '1961'},
-                        {value: '1960', displayValue: '1960'},
-                        {value: '1959', displayValue: '1959'},
-                        {value: '1958', displayValue: '1958'},
-                        {value: '1957', displayValue: '1957'},
-                        {value: '1956', displayValue: '1956'},
-                        {value: '1955', displayValue: '1955'},
-                        {value: '1954', displayValue: '1954'},
-                        {value: '1953', displayValue: '1953'},
-                        {value: '1952', displayValue: '1952'},
-                        {value: '1951', displayValue: '1951'},
-                        {value: '1950', displayValue: '1950'},
-                        {value: '1949', displayValue: '1949'},
-                        {value: '1948', displayValue: '1948'},
-                        {value: '1947', displayValue: '1947'},
-                        {value: '1946', displayValue: '1946'},
-                        {value: '1945', displayValue: '1945'},
-                        {value: '1944', displayValue: '1944'},
-                        {value: '1943', displayValue: '1943'},
-                        {value: '1942', displayValue: '1942'},
-                        {value: '1941', displayValue: '1941'},
-                        {value: '1940', displayValue: '1940'}
-                    ]
+                    required: true,
+                    id: 'user_year'
                 },
                 value: '',
                 validation: {
@@ -267,11 +179,12 @@ class WriteReview extends Component {
             }
         },
         formIsValid: false,
-        loading: false
+        loading: false,
+        showSuccess: false
     }
     orderHandler = ( event ) => {
         event.preventDefault();
-
+        this.setState( { loading: true } );
         const formData = {};
         for (let formElementIdentifier in this.state.reviewForm) {
             formData[formElementIdentifier] = this.state.reviewForm[formElementIdentifier].value;
@@ -327,7 +240,7 @@ class WriteReview extends Component {
         axios.post( '/savereview', newReview )
         .then( response => {
             console.log(response)
-            alert("Thanks For the review");
+            this.setState( { loading: false, showSuccess: true  } );
             this.setState(this.state);
 
         } )
@@ -394,39 +307,78 @@ class WriteReview extends Component {
     }
 
     render() {
-        
-        return (
-            
+        if (this.state.loading) {
+            return <Loading />
+         }
+        if (this.state.showSuccess) {
+            return (
+                <div className="zevioo-form__success">
+                    <div className="zevioo-close-icons" onClick={this.props.click}><img src={Close} className="zevioo-close-svg" alt="zevioo Close"/></div>
+                    <div className="zevioo-success-title">Thank you!</div>
+                    <div className="zevioo-success-subTitle">
+                        We’ve just sent you an email. Please confirm your email account by
+                        clicking on the confirmation link and your Question will be published.
+                    </div>
+                </div>
+            )
+        }
 
+        return (
             <div className="zevioo-write-review-wrapper">
                 <div className="zevioo-write-review-box">
                 <form id="zevioo-review-form" onSubmit={this.orderHandler}>
                     <div className="zevioo-write-review-header">
-                        <label className="zevioo-label">
-                            Αξιολογήστε το
-                        </label>
-                        <label className="zevioo-label-medium">
-                            Αν η κριτική σας είναι ενδιαφέρουσα, ενδέχεται να δημοσιοποιηθεί (χωρίς τα προσωπικά σας δεδομένα φυσικά)
-                            και σε άλλες ιστοσελίδες που συνεργάζονται με το zevioo.
-                        </label>
                         <div className="zevioo-rating-group">
-                            <label className="zevioo-label-small zevioo-rating-title">
-                                Συνολική βαθμολογία 
+                            <label className="zevioo-label-big zevioo-rating-title">
+                                Τι βαθμολογία θα του δίνατε συνολικά; 
                             </label>
                             <Input 
                                 elementType={this.state.reviewForm.rating.elementType}
                                 elementConfig={this.state.reviewForm.rating.elementConfig}
                                 value={this.state.reviewForm.rating.value}
                                 changed={(event) => this.inputChangedHandler(event, 'rating')}
-                               
                                  />
                         </div>
+                        <div className="zevioo-rating__quality__money">
+                        <div className="zevioo-rating-group">
+                            <label className="zevioo-label-small zevioo-rating-title">
+                                Ποιότητα 
+                            </label>
+                            <Input 
+                                elementType={this.state.reviewForm.qualityBox.elementType}
+                                elementConfig={this.state.reviewForm.qualityBox.elementConfig}
+                                value={this.state.reviewForm.qualityBox.value}
+                                changed={(event) => this.inputChangedHandler(event, 'qualityBox')}
+                               />
+                        </div>
+                        <div className="zevioo-rating-group">
+                            <label className="zevioo-label-small zevioo-rating-title">
+                                Αξίζει τα λεφτά του
+                            </label>
+                            <Input 
+                                elementType={this.state.reviewForm.valueBox.elementType}
+                                elementConfig={this.state.reviewForm.valueBox.elementConfig}
+                                value={this.state.reviewForm.valueBox.value}
+                                changed={(event) => this.inputChangedHandler(event, 'valueBox')}
+                                />
+                        </div>
+                    </div>
                     </div>
 
                     <div className="zevioo-write-review-body">
                         <div className="zevioo-form">
-                            <div className="zevioo-form-group zevioo-flex">
-                            <div className="zevioo-half">
+                            <div className="zevioo-form-group__flex">
+                                <label className="zevioo-label-big zevioo-rating-title">
+                                Τι τίτλο θα δίνατε στην αξιολόγηση σας;
+                                </label>
+                                <Input 
+                                elementType={this.state.reviewForm.titleReview.elementType}
+                                elementConfig={this.state.reviewForm.titleReview.elementConfig}
+                                value={this.state.reviewForm.titleReview.value}
+                                changed={(event) => this.inputChangedHandler(event, 'titleReview')} />
+                            </div>
+                            <div className="zevioo-form-group__flex">
+                            <div className="zevioo-half__flex">
                                 <Input 
                                     elementType={this.state.reviewForm.positiveReview.elementType}
                                     elementConfig={this.state.reviewForm.positiveReview.elementConfig}
@@ -434,7 +386,7 @@ class WriteReview extends Component {
                                     changed={(event) => this.inputChangedHandler(event, 'positiveReview')} />
                                 <span className="zevioo-form-span">max. 300 χαρακτήρες</span>
                                 </div>
-                                <div className="zevioo-half">
+                                <div className="zevioo-half__flex">
                                     <Input 
                                         elementType={this.state.reviewForm.negativeReview.elementType}
                                         elementConfig={this.state.reviewForm.negativeReview.elementConfig}
@@ -443,89 +395,51 @@ class WriteReview extends Component {
                                     <span className="zevioo-form-span">max. 300 χαρακτήρες</span>
                                 </div>
                             </div>
-                            <div className="zevioo-rating__quality__money">
-                                <div className="zevioo-rating-group">
-                                    <label className="zevioo-label-small zevioo-rating-title">
-                                        Ποιότητα 
-                                    </label>
-                                    <Input 
-                                        elementType={this.state.reviewForm.qualityBox.elementType}
-                                        elementConfig={this.state.reviewForm.qualityBox.elementConfig}
-                                        value={this.state.reviewForm.qualityBox.value}
-                                        changed={(event) => this.inputChangedHandler(event, 'qualityBox')}
-                                       />
-                                </div>
-                                <div className="zevioo-rating-group">
-                                    <label className="zevioo-label-small zevioo-rating-title">
-                                        Αξίζει τα λεφτά του
-                                    </label>
-                                    <Input 
-                                        elementType={this.state.reviewForm.valueBox.elementType}
-                                        elementConfig={this.state.reviewForm.valueBox.elementConfig}
-                                        value={this.state.reviewForm.valueBox.value}
-                                        changed={(event) => this.inputChangedHandler(event, 'valueBox')}
-                                        />
-                                </div>
-                            </div>
-                            <div className="zevioo-form-group">
-                            <Input 
-                            elementType={this.state.reviewForm.titleReview.elementType}
-                            elementConfig={this.state.reviewForm.titleReview.elementConfig}
-                            value={this.state.reviewForm.titleReview.value}
-                            changed={(event) => this.inputChangedHandler(event, 'titleReview')} />
-                                <span className="zevioo-form-span">max. "150" χαρακτήρες</span>
-                            </div>
                         </div>
                     </div>
 
                     <div className="zevioo-write-review-footer">
-                        <div className="zevioo-user-info zevioo-form">
-                            <div className="zevioo-form-group">
-                                <Input 
-                                elementType={this.state.reviewForm.firstName.elementType}
-                                elementConfig={this.state.reviewForm.firstName.elementConfig}
-                                value={this.state.reviewForm.firstName.value}
-                                changed={(event) => this.inputChangedHandler(event, 'firstName')} />
-                            </div>
-                            <div className="zevioo-form-group">
-                                <Input 
-                                elementType={this.state.reviewForm.lastName.elementType}
-                                elementConfig={this.state.reviewForm.lastName.elementConfig}
-                                value={this.state.reviewForm.lastName.value}
-                                changed={(event) => this.inputChangedHandler(event, 'lastName')} />
-                            </div>
-                            <div className="zevioo-form-group">
-                                <Input 
-                                elementType={this.state.reviewForm.email.elementType}
-                                elementConfig={this.state.reviewForm.email.elementConfig}
-                                value={this.state.reviewForm.email.value}
-                                changed={(event) => this.inputChangedHandler(event, 'email')} />
-                            </div>
-                            <div className="zevioo-form-group">
-                                <label className="zevioo-label-small">
-                                    Date Of Birth:
-                                </label>
-                                <Input 
-                                elementType={this.state.reviewForm.age.elementType}
-                                elementConfig={this.state.reviewForm.age.elementConfig}
-                                value={this.state.reviewForm.age.value}
-                                changed={(event) => this.inputChangedHandler(event, 'age')} />
-                            </div>
-                            <div className="zevioo-form-group">
-                                <label className="zevioo-label-small">
-                                    Gender:
-                                </label>
-                                <Input 
-                                elementType={this.state.reviewForm.gender.elementType}
-                                elementConfig={this.state.reviewForm.gender.elementConfig}
-                                value={this.state.reviewForm.gender.value}
-                                changed={(event) => this.inputChangedHandler(event, 'gender')} />
-                            </div>
-                            <div className="zevioo-form-group__actions">
-                                <input type="submit" className="zevioo-button" value="Post" />
-                                <button className="zevioo-button" id="cancel-form" onClick={this.props.click}>Cancel</button>
-                            </div>
+                    <div className="zevioo-user-info zevioo-form">
+                    <div className="zevioo-form-group__flex_end">
+                        <div className="zevioo-half__flex_end">
+                            <label className="zevioo-label-big">
+                            Όνομα & αρχικό επιθέτου
+                            </label>
+                            <Input 
+                            elementType={this.state.reviewForm.firstName.elementType}
+                            elementConfig={this.state.reviewForm.firstName.elementConfig}
+                            value={this.state.reviewForm.firstName.value}
+                            changed={(event) => this.inputChangedHandler(event, 'firstName')} />
                         </div>
+                        <div className="zevioo-half__flex_end">
+                            <Input 
+                            elementType={this.state.reviewForm.lastName.elementType}
+                            elementConfig={this.state.reviewForm.lastName.elementConfig}
+                            value={this.state.reviewForm.lastName.value}
+                            changed={(event) => this.inputChangedHandler(event, 'lastName')} />
+                        </div>
+                        <div className="zevioo-half__flex_end">
+                            <label className="zevioo-label-big">
+                                Age
+                            </label>
+                            <Input 
+                            elementType={this.state.reviewForm.age.elementType}
+                            elementConfig={this.state.reviewForm.age.elementConfig}
+                            value={this.state.reviewForm.age.value}
+                            changed={(event) => this.inputChangedHandler(event, 'age')} />
+                        </div>
+                    </div>
+                    <div className="zevioo-form-group">
+                        <Input 
+                        elementType={this.state.reviewForm.email.elementType}
+                        elementConfig={this.state.reviewForm.email.elementConfig}
+                        value={this.state.reviewForm.email.value}
+                        changed={(event) => this.inputChangedHandler(event, 'email')} />
+                    </div>
+                    <div className="zevioo-form-group zevioo-flex__right">
+                        <input type="submit" className="zevioo-button zevioo-color__btn" value="Publish" />
+                    </div>
+                </div>
                     </div>
                 </form>
             </div>

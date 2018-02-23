@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import '../../../index.css';
-import {percentage,filterReview} from '../../../helpers/Helpers'
+import Aux from '../../../hoc/Aux';
+import {percentage,filterReview,dateToDay} from '../../../helpers/Helpers';
+import ThumbsForm from '../Forms/ThumbsForm';
 
 
 
@@ -11,7 +13,8 @@ class ReviewList extends Component {
             lastPager: null, //click
             showReviews:2,
             loadReviews: 2, //click
-            showLoadMore: true
+            showLoadMore: true,
+            sortValue: 'new'
         };
 
       pageHandleClick(e) {
@@ -20,23 +23,61 @@ class ReviewList extends Component {
         });
       }
 
-
-
-
 render(){
 
-    const filterNum = this.props.filterNum;
-    const isFilter = this.props.isFilter;
-    let filteredReviews = null;
-    if (isFilter) {
-        filteredReviews = this.props.reviews.filter(filterReview(filterNum));
-    }else {
-        filteredReviews = this.props.reviews
-    }
+        //Sort reviews
+        const handleChange = (e) => {
+            e.preventDefault()
+            this.setState({sortValue: e.target.value});
+            console.log(e.target.value, this.state)
+        }
 
+        const sortedValue = this.state.sortValue;
+        let sortedReviews = null;
+        if (sortedValue === 'new') {
+            sortedReviews = (a,b) => {
+                const convertDigitIn = (date) => date.slice(0, 10).split('/').reverse().join('/');
+                const d1 = new Date(convertDigitIn(a.DT));
+                const d2 = new Date(convertDigitIn(b.DT));
+                if (d1  > d2) {return -1;}
+                if (d1  < d2) {return 1;}
+                return 0;
+            }
+        }else if (sortedValue === 'older'){
+            sortedReviews = (a,b) => {
+                const convertDigitIn = (date) => date.slice(0, 10).split('/').reverse().join('/');
+                const d1 = new Date(convertDigitIn(a.DT));
+                const d2 = new Date(convertDigitIn(b.DT));
+                console.log(d1,d2)
+                if (d1 < d2) {return -1;}
+                if (d1 > d2) {return 1;}
+                return 0;
+            }
+        }else if (sortedValue === 'text'){
+            sortedReviews = (a,b) => {
+                const x = a.TT.length;
+                const y = b.TT.length;
+                if (x > y) {return -1;}
+                if (x < y) {return 1;}
+                return 0;
+            }
+        }else if (sortedValue === 'better'){
+            sortedReviews = (a,b) => b.RT - a.RT
+        }else if (sortedValue === 'worst'){
+            sortedReviews = (a,b) => a.RT - b.RT
+        }
 
+        // Filter Reviews
+        const filterNum = this.props.filterNum;
+        const isFilter = this.props.isFilter;
+        let filteredReviews = null;
+        if (isFilter) {
+            filteredReviews = this.props.reviews.filter(filterReview(filterNum)).sort(sortedReviews);
+        }else {
+            filteredReviews = this.props.reviews.sort(sortedReviews)
+        }
 
-    const {currentPage, loadReviews } = this.state;
+        const {currentPage, loadReviews } = this.state;
 
         // Logic for displaying current reviews
         const indexOfLastReview = currentPage * loadReviews;
@@ -82,74 +123,107 @@ render(){
             }
         }
 
-        return (
-            <div className="zevioo-product-review">
-                <div className="zevioo-action-filter">
-                    <h3 className="zevioo-h3">Recent reviews</h3>
-                </div>
-                <div className="zevioo-reviews-list">
-                {currentReviews.map((review,index) => {
-                    return (
-                       <div key={index} className="zevioo-single-review" > 
-                       <div className="zevioo-single-review-header zevioo-clearfix">
-                           <div className="zevioo-pull__left">
-                               <div className="zevioo-icon" style={{display: 'none'}}>
-                                   <label className="zevioo-user-letter">
-                                   {review.FN.charAt(0)}
-                                   </label>
-                                   <span className="zevioo-check-small">✓</span>
-                               </div>
-                               <h2 className="zevioo-review-title">
-                               {review.TT}
-                               </h2>
-                               <div className="zevioo-star-ratings">
-                                   <div className="zevioo-star-ratings-top" style={{width: percentage(review.RT ,5)+'%'}}><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-                                   <div className="zevioo-star-ratings-bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-                               </div>
-                               
-                           </div>
-                           <div className="zevioo-pull__right">
-                               <div className="zevioo-review-date">
-                               {review.DT.slice(0, 10)}
-                               </div>
-                               <div className="zevioo-buyer-info">
-                               <div className="zevioo-buyer-name">
-                               {review.FN + " " + review.LN}
-                               </div>
-                           
-                               <div className="zevioo-verify-buyer">
-                                   <span>{(review.CPF === true) ? "Verified Buyer" : " "} </span>
-                               </div>
-                            </div>
-                           </div>
+
+        const exportReviews = currentReviews.map((review,index) => {
+            return (
+               <div key={index} className="zevioo-single-review" > 
+               <div className="zevioo-single-review-header zevioo-clearfix">
+                   <div className="zevioo-pull__left">
+                       <div className="zevioo-icon" style={{display: 'none'}}>
+                           <label className="zevioo-user-letter">
+                           {review.FN.charAt(0)}
+                           </label>
+                           <span className="zevioo-check-small">✓</span>
                        </div>
-                       <div className="zevioo-single-review-body">
-                           <div className="zevioo-review-content">
-                               <div className="zevioo-review-pn">
-                                   <p className="zevioo-review-positive">
-                                   <span className="zevioo-positive"> {review.PT ? '+' : ''} </span><span> {review.PT} </span>
-                                   </p>
-                                   <p className="zevioo-review-negative">
-                                   <span className="zevioo-negative"> {review.PT ? '-' : ''} </span><span> {review.NT} </span>
-                                   </p>
-                               </div>
-                               <div className="zevioo-review-bars">
+                       <h2 className="zevioo-review-title">
+                       {review.TT}
+                       </h2>
+                       <div className="zevioo-star-ratings">
+                           <div className="zevioo-star-ratings-top" style={{width: percentage(review.RT ,5)+'%'}}><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                           <div className="zevioo-star-ratings-bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                       </div>
+                       
+                   </div>
+                   <div className="zevioo-pull__right">
+                       <div className="zevioo-review-date">
+                       {dateToDay(review.DT)}
+                       </div>
+                       <div className="zevioo-buyer-info">
+                       <div className="zevioo-buyer-name">
+                       {review.FN + " " + review.LN}
+                       </div>
+                   
+                       <div className="zevioo-verify-buyer">
+                           <span>{(review.CPF === true) ? "Verified Buyer" : " "} </span>
+                       </div>
+                    </div>
+                   </div>
+               </div>
+               <div className="zevioo-single-review-body">
+                   <div className="zevioo-review-content">
+                       <div className="zevioo-review-pn">
+                           <p className="zevioo-review-positive">
+                           <span className="zevioo-positive"> {review.PT ? '+' : ''} </span><span> {review.PT} </span>
+                           </p>
+                           <p className="zevioo-review-negative">
+                           <span className="zevioo-negative"> {review.PT ? '-' : ''} </span><span> {review.NT} </span>
+                           </p>
+                       </div>
+                       <div className="zevioo-container__flex ">
+                            <div className="zevioo-review-bars">
                                     {bars(review.KM, 0)}
                                     {bars(review.KM, 1)}
-                               </div>
-                               </div>
-                           </div>
-                     </div>
-                    )
-                })}
+                            </div>
+                            <ThumbsForm 
+                                likeCount={review.LCN} 
+                                dislikeCount={review.DCN}
+                                reviewId={review.ID}/>
+                       </div>
+                    </div>
+                </div>
+             </div>
+            )
+        })
+
+        const exportReviewComponent = (
+
+            <div className="zevioo-product-review">
+                <div className="zevioo-action-filter">
+                    <div className="zevioo-filter__review">
+                        <span className="zevioo-reviews__btn-active" onClick={this.props.displayReviewsClick}>Αξιολογήσεις ({this.props.reviewsHeader.RC})</span>
+                        {this.props.showQuestionsTab ? <span className="zevioo-questions__btn" onClick={this.props.displayQuestionsClick}>Ερωτήσεις ({this.props.questionCount})</span> : ''}
+                    </div>
+                    <div className="zevioo-filter__dropdown">
+                        <label className="zevioo-dropdown__label">
+                        Ταξινόμηση:
+                        </label>
+                        <select className="zevioo-select__first" value={this.state.value} onChange={(e) => handleChange(e)}>
+                            <option value="new">Πιό πρόσφατη</option>
+                            <option value="older">Πιό παλία</option>
+                            <option value="text">Με τίτλο</option>
+                            <option value="better">Καλύτερη</option>
+                            <option value="worst">Χειρότερη</option>
+                        </select>
+                    </div>
+                </div>
+                <div className="zevioo-reviews-list">
+                {exportReviews}
                 </div>
                 <div className="zevioo-paggination">
                     <div id="zevioo-pager">
-                        {(this.state.lastPager !== this.state.currentPage) ? <a onClick={(e) => pageNextHandleClick(e)} >Load More</a> : ''}
+                        {(this.state.lastPager !== this.state.currentPage) ? <a onClick={(e) => pageNextHandleClick(e)} >Περισσότερες αξιολογήσεις</a> : ''}
                     </div>
                 </div>
             </div>
         );
+
+
+        return (
+            <Aux>
+                {exportReviewComponent}
+            </Aux>
+            
+        )
     }
 }
 export default ReviewList;

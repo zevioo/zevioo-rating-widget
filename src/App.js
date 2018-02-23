@@ -10,7 +10,7 @@ class App extends Component {
     return (
       <div className="zevioo-wrapper">
         <Layout>
-          <Reviews />
+          <Reviews/>
         </Layout>
       </div>
     );

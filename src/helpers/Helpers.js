@@ -58,6 +58,11 @@ export const filterReview = (filter)  => {
 }
 
 
+export const sortReviews = (sortBy) => {
+   return (a, b) => a.sortBy > b.sortBy
+}
+
+
 
 export const hasClass = (el, className) => {
     if (el.classList)
@@ -94,11 +99,11 @@ export const userStarRating = () => {
         removeClass(star4, "star-choosen");
         removeClass(star5, "star-choosen");
 
-        star1.style.color = 'red';
-        star2.style.color = '#ededed';
-        star3.style.color = '#ededed';
-        star4.style.color = '#ededed';
-        star5.style.color = '#ededed';
+        star1.style.color = 'var(--zeviooColor)';
+        star2.style.color = 'var(--gray)';
+        star3.style.color = 'var(--gray)';
+        star4.style.color = 'var(--gray)';
+        star5.style.color = 'var(--gray)';
     })
     star2.addEventListener('click', function() {
         addClass(star2, "star-choosen");
@@ -107,11 +112,11 @@ export const userStarRating = () => {
         removeClass(star4, "star-choosen");
         removeClass(star5, "star-choosen");
 
-        star1.style.color = '#f26236';
-        star2.style.color = '#f26236';
-        star3.style.color = '#ededed';
-        star4.style.color = '#ededed';
-        star5.style.color = '#ededed';
+        star1.style.color = 'var(--zeviooColor)';
+        star2.style.color = 'var(--zeviooColor)';
+        star3.style.color = 'var(--gray)';
+        star4.style.color = 'var(--gray)';
+        star5.style.color = 'var(--gray)';
     })
     star3.addEventListener('click', function() {
         addClass(star3, "star-choosen");
@@ -120,11 +125,11 @@ export const userStarRating = () => {
         removeClass(star4, "star-choosen");
         removeClass(star5, "star-choosen");
 
-        star1.style.color = '#faa332';
-        star2.style.color = '#faa332';
-        star3.style.color = '#faa332';
-        star4.style.color = '#ededed';
-        star5.style.color = '#ededed';
+        star1.style.color = 'var(--zeviooColor)';
+        star2.style.color = 'var(--zeviooColor)';
+        star3.style.color = 'var(--zeviooColor)';
+        star4.style.color = 'var(--gray)';
+        star5.style.color = 'var(--gray)';
     })
     star4.addEventListener('click', function() {
         addClass(star4, "star-choosen");
@@ -133,11 +138,11 @@ export const userStarRating = () => {
         removeClass(star1, "star-choosen");
         removeClass(star5, "star-choosen");
 
-        star1.style.color = '#afd344';
-        star2.style.color = '#afd344';
-        star3.style.color = '#afd344';
-        star4.style.color = '#afd344';
-        star5.style.color = '#ededed';
+        star1.style.color = 'var(--zeviooColor)';
+        star2.style.color = 'var(--zeviooColor)';
+        star3.style.color = 'var(--zeviooColor)';
+        star4.style.color = 'var(--zeviooColor)';
+        star5.style.color = 'var(--gray)';
     })
     star5.addEventListener('click', function() {
         addClass(star5, "star-choosen");
@@ -146,11 +151,11 @@ export const userStarRating = () => {
         removeClass(star4, "star-choosen");
         removeClass(star1, "star-choosen");
 
-        star1.style.color = '#52b952';
-        star2.style.color = '#52b952';
-        star3.style.color = '#52b952';
-        star4.style.color = '#52b952';
-        star5.style.color = '#52b952';
+        star1.style.color = 'var(--zeviooColor)';
+        star2.style.color = 'var(--zeviooColor)';
+        star3.style.color = 'var(--zeviooColor)';
+        star4.style.color = 'var(--zeviooColor)';
+        star5.style.color = 'var(--zeviooColor)';
     })
 }
 export const userQualityRating = () => {
@@ -174,7 +179,7 @@ export const userQualityRating = () => {
         removeClass(box4, "quality-choosen");
         removeClass(box5, "quality-choosen");
 
-        box1.style.color = 'var(--rating1)';
+        box1.style.color = 'var(--zeviooColor)';
         box2.style.color = 'var(--gray)';
         box3.style.color = 'var(--gray)';
         box4.style.color = 'var(--gray)';
@@ -187,8 +192,8 @@ export const userQualityRating = () => {
         removeClass(box4, "quality-choosen");
         removeClass(box5, "quality-choosen");
 
-        box1.style.color = 'var(--rating2)';
-        box2.style.color = 'var(--rating2)';
+        box1.style.color = 'var(--zeviooColor)';
+        box2.style.color = 'var(--zeviooColor)';
         box3.style.color = 'var(--gray)';
         box4.style.color = 'var(--gray)';
         box5.style.color = 'var(--gray)';
@@ -200,9 +205,9 @@ export const userQualityRating = () => {
         removeClass(box4, "quality-choosen");
         removeClass(box5, "quality-choosen");
 
-        box1.style.color = 'var(--rating3)';
-        box2.style.color = 'var(--rating3)';
-        box3.style.color = 'var(--rating3)';
+        box1.style.color = 'var(--zeviooColor)';
+        box2.style.color = 'var(--zeviooColor)';
+        box3.style.color = 'var(--zeviooColor)';
         box4.style.color = 'var(--gray)';
         box5.style.color = 'var(--gray)';
     })
@@ -213,10 +218,10 @@ export const userQualityRating = () => {
         removeClass(box1, "quality-choosen");
         removeClass(box5, "quality-choosen");
 
-        box1.style.color = 'var(--rating4)';
-        box2.style.color = 'var(--rating4)';
-        box3.style.color = 'var(--rating4)';
-        box4.style.color = 'var(--rating4)';
+        box1.style.color = 'var(--zeviooColor)';
+        box2.style.color = 'var(--zeviooColor)';
+        box3.style.color = 'var(--zeviooColor)';
+        box4.style.color = 'var(--zeviooColor)';
         box5.style.color = 'var(--gray)';
     })
     box5.addEventListener('click', function() {
@@ -226,11 +231,11 @@ export const userQualityRating = () => {
         removeClass(box4, "quality-choosen");
         removeClass(box1, "quality-choosen");
 
-        box1.style.color = 'var(--rating5)';
-        box2.style.color = 'var(--rating5)';
-        box3.style.color = 'var(--rating5)';
-        box4.style.color = 'var(--rating5)';
-        box5.style.color = 'var(--rating5)';
+        box1.style.color = 'var(--zeviooColor)';
+        box2.style.color = 'var(--zeviooColor)';
+        box3.style.color = 'var(--zeviooColor)';
+        box4.style.color = 'var(--zeviooColor)';
+        box5.style.color = 'var(--zeviooColor)';
     })
 }
 export const userValueRating = () => {
@@ -254,7 +259,7 @@ export const userValueRating = () => {
         removeClass(box4, "value-choosen");
         removeClass(box5, "value-choosen");
 
-        box1.style.color = 'var(--rating1)';
+        box1.style.color = 'var(--zeviooColor)';
         box2.style.color = 'var(--gray)';
         box3.style.color = 'var(--gray)';
         box4.style.color = 'var(--gray)';
@@ -267,8 +272,8 @@ export const userValueRating = () => {
         removeClass(box4, "value-choosen");
         removeClass(box5, "value-choosen");
 
-        box1.style.color = 'var(--rating2)';
-        box2.style.color = 'var(--rating2)';
+        box1.style.color = 'var(--zeviooColor)';
+        box2.style.color = 'var(--zeviooColor)';
         box3.style.color = 'var(--gray)';
         box4.style.color = 'var(--gray)';
         box5.style.color = 'var(--gray)';
@@ -280,9 +285,9 @@ export const userValueRating = () => {
         removeClass(box4, "value-choosen");
         removeClass(box5, "value-choosen");
 
-        box1.style.color = 'var(--rating3)';
-        box2.style.color = 'var(--rating3)';
-        box3.style.color = 'var(--rating3)';
+        box1.style.color = 'var(--zeviooColor)';
+        box2.style.color = 'var(--zeviooColor)';
+        box3.style.color = 'var(--zeviooColor)';
         box4.style.color = 'var(--gray)';
         box5.style.color = 'var(--gray)';
     })
@@ -293,10 +298,10 @@ export const userValueRating = () => {
         removeClass(box1, "value-choosen");
         removeClass(box5, "value-choosen");
 
-        box1.style.color = 'var(--rating4)';
-        box2.style.color = 'var(--rating4)';
-        box3.style.color = 'var(--rating4)';
-        box4.style.color = 'var(--rating4)';
+        box1.style.color = 'var(--zeviooColor)';
+        box2.style.color = 'var(--zeviooColor)';
+        box3.style.color = 'var(--zeviooColor)';
+        box4.style.color = 'var(--zeviooColor)';
         box5.style.color = 'var(--gray)';
     })
     box5.addEventListener('click', function() {
@@ -306,10 +311,59 @@ export const userValueRating = () => {
         removeClass(box4, "value-choosen");
         removeClass(box1, "value-choosen");
 
-        box1.style.color = 'var(--rating5)';
-        box2.style.color = 'var(--rating5)';
-        box3.style.color = 'var(--rating5)';
-        box4.style.color = 'var(--rating5)';
-        box5.style.color = 'var(--rating5)';
+        box1.style.color = 'var(--zeviooColor)';
+        box2.style.color = 'var(--zeviooColor)';
+        box3.style.color = 'var(--zeviooColor)';
+        box4.style.color = 'var(--zeviooColor)';
+        box5.style.color = 'var(--zeviooColor)';
     })
 }
+
+/* Date Clac */
+export const dateToDay = (date) => {
+    //Convert The Date Format 
+    const convertDigitIn = (date) => date.split('/').reverse().join('/');
+    
+     const convertedDate = convertDigitIn(date.slice(0, 10));
+    /* Date Finder Function */
+    const today= new Date() //Today
+    const day= new Date(convertedDate) //Review Date
+
+    const one_day=1000*60*60*24
+    
+    //Calculate difference btw the two dates, and convert to days
+    const x = (Math.ceil((today.getTime() - day.getTime())/(one_day)))
+
+    const y = 365; //Set the year count
+    const y2 = 30; //Set day count
+    const remainder = x % y; // the remainder
+    const dayCount = remainder % y2; // day count
+    const year = (x - remainder) / y;
+    const month = (remainder - dayCount) / y2;
+    if(dayCount !== 0){
+        if(dayCount === 1){
+            return (dayCount + ' μέρα πριν')
+        } else {
+            return (dayCount + ' μέρες πριν')
+        }
+        
+    }
+    if(month !== 0){
+        if(month === 1){
+            return (month + ' μήνας πριν')
+        } else {
+            return (month + ' μήνες πριν')
+        }
+        
+    }
+    if(year !== 0){
+        if(year === 1){
+            return (year + ' χρόνος πριν')
+        } else {
+            return (year + ' χρόνια πριν')
+        }
+        
+    }
+
+    }
+    

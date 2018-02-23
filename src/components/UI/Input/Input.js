@@ -12,6 +12,14 @@ const input = ( props ) => {
             onChange={props.changed} />;
             break;
 
+            case ( 'number' ):
+            inputElement = <input
+            type="number"
+            {...props.elementConfig}
+            value={props.value}
+            onChange={props.changed} />;
+            break;
+
             case ( 'textarea' ):
             inputElement =
                 <textarea
@@ -41,10 +49,9 @@ const input = ( props ) => {
             inputElement = (
                 <div className={props.elementConfig.className}>
                 {props.elementConfig.options.map(option => (
-                    <Aux>
+                    <Aux key={option.id}>
                         <label htmlFor={option.id} id={option.labelId}>{props.elementConfig.label}</label>
                         <input
-                        key={option.id}
                         id={option.id}
                         name={option.name}
                         type="radio"

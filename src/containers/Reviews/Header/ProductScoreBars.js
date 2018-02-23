@@ -15,7 +15,6 @@ const productScoreBars = (props) => {
     return (
         <Aux>
         <div className="zevioo-product-score-details">
-        <div className="zevioo-counter__text">{props.RC} αξιολογήσεις</div>
         <div className="zevioo-filter-bar">
             <div className="zevioo-tooltip">
                 <div className="zevioo-tooltip-header">
