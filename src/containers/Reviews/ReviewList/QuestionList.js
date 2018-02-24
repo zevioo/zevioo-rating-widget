@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import '../../../index.css';
 import {dateToDay} from '../../../helpers/Helpers';
+import Verify from '../../../components/Svg/verify';
 
 
 class QuestionList extends Component {
@@ -22,6 +23,15 @@ class QuestionList extends Component {
 
 render(){
 
+    const verifyIcon = (                                
+        <Verify
+        width="20px"
+        height="20px"
+        fill="var(--green)"
+        stroke="var(--green)"
+        strokeWidth= "5px" />
+    )
+
     const questions = this.props.questions;
 
 
@@ -29,7 +39,7 @@ render(){
     const handleChange = (e) => {
         e.preventDefault()
         this.setState({sortValue: e.target.value});
-        console.log(e.target.value, this.state)
+
     }
 
     const sortedValue = this.state.sortValue;
@@ -79,6 +89,7 @@ render(){
     }
 
     const exportQuestions = currentQuestion.map((question,index) => {
+
         return (
            <div key={index} className="zevioo-single-question" > 
            <div className="zevioo-single-question-header zevioo-clearfix">
@@ -98,24 +109,30 @@ render(){
                    </div>
                
                    <div className="zevioo-verify-buyer">
-                       <span>"Verified Buyer" </span>
+                   <span>{(question.CP === 1) && verifyIcon } </span>
                    </div>
                 </div>
                </div>
            </div>
-           <div className="zevioo-single-question-body">
-                <div className="zevioo-question-content">
-                    <div className="zevioo-question-icon">
-                        <label className="zevioo-question-logo">
-                        t
-                        </label>
+           {
+            question.AL.map((answer, index) => {
+                return ( 
+                    <div key={index} className="zevioo-single-question-body">
+                    <div className="zevioo-question-content">
+                        <span className="zevioo-question-icon">
+                            <div className="zevioo-question-logo">
+                            <div style={{backgroundImage: 'url('+ answer.IMG + ')'}} className="zevioo-eshop__img">
+                            </div>
+                            </div>
+                        </span>
+                        <span className="zevioo-question-reply" > 
+                            <p>{answer.AT}</p>
+                        </span>
                     </div>
-                    <div className="zevioo-question-reply" > 
-                        Hi Katerina,
-                        Thank you for choosing our products. Yes you can. However, if your skin is very dry, you
-                        should better try the Extra Dry variant, by following this link.</div>
-                    </div>
-               </div>
+                   </div>
+                )
+            }
+        )}
          </div>
         )
     })
@@ -149,7 +166,6 @@ render(){
         </div>
     );
 
-    console.log(this.props.questions)
 return (
         <div>
         {exportQuestionsComponent}

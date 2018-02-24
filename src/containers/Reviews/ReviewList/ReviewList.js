@@ -3,6 +3,7 @@ import '../../../index.css';
 import Aux from '../../../hoc/Aux';
 import {percentage,filterReview,dateToDay} from '../../../helpers/Helpers';
 import ThumbsForm from '../Forms/ThumbsForm';
+import Verify from '../../../components/Svg/verify';
 
 
 
@@ -24,12 +25,20 @@ class ReviewList extends Component {
       }
 
 render(){
+        const verifyIcon = (                                
+            <Verify
+            width="20px"
+            height="20px"
+            fill="var(--green)"
+            stroke="var(--green)"
+            strokeWidth= "5px" />
+        )
 
         //Sort reviews
         const handleChange = (e) => {
             e.preventDefault()
             this.setState({sortValue: e.target.value});
-            console.log(e.target.value, this.state)
+
         }
 
         const sortedValue = this.state.sortValue;
@@ -48,7 +57,7 @@ render(){
                 const convertDigitIn = (date) => date.slice(0, 10).split('/').reverse().join('/');
                 const d1 = new Date(convertDigitIn(a.DT));
                 const d2 = new Date(convertDigitIn(b.DT));
-                console.log(d1,d2)
+
                 if (d1 < d2) {return -1;}
                 if (d1 > d2) {return 1;}
                 return 0;
@@ -104,17 +113,15 @@ render(){
         const bars = (val, position) => {
             if (val.length > 0){
                 return (
-                    <div className="zevioo-review-bar">
-                        <div className="zevioo-review-bar-title">
+                    <div className="zevioo-product-score-bar">
+                        <div className="zevioo-product-bar-title">
                             <p>{val[position].NM}</p>
                         </div>
-                        <div className="zevioo-review-bar-box">
-                            <div className="zevioo-product-bar-box">
-                                <div className="zevioo-score-graph">
-                                    <div className="zevioo-progress-score" style={{width: percentage(val[position].RT, 5)+'%'}}></div>
-                                </div>
-                                <div className="zevioo-star-value"><span> {val[position].RT} </span></div>
+                        <div className="zevioo-product-bar-box">
+                            <div className="zevioo-score-graph">
+                                <div className="zevioo-progress-score" style={{width: percentage(val[position].RT, 5)+'%'}}></div>
                             </div>
+                            <div className="zevioo-bar-value"><span> {val[position].RT} </span></div>
                         </div>
                     </div>
                 )
@@ -152,9 +159,8 @@ render(){
                        <div className="zevioo-buyer-name">
                        {review.FN + " " + review.LN}
                        </div>
-                   
                        <div className="zevioo-verify-buyer">
-                           <span>{(review.CPF === true) ? "Verified Buyer" : " "} </span>
+                           <span>{(review.CPF === true) && verifyIcon } </span>
                        </div>
                     </div>
                    </div>
@@ -171,8 +177,9 @@ render(){
                        </div>
                        <div className="zevioo-container__flex ">
                             <div className="zevioo-review-bars">
-                                    {bars(review.KM, 0)}
                                     {bars(review.KM, 1)}
+                                    {bars(review.KM, 0)}
+                                    
                             </div>
                             <ThumbsForm 
                                 likeCount={review.LCN} 

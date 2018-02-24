@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Input from '../../../components/UI/Input/Input';
 import Loading from '../../../components/Loading/Loading';
-import Close from '../../../components/Svg/close.svg';
 
 class AskQuestion extends Component {
     state = {
@@ -50,7 +49,8 @@ class AskQuestion extends Component {
                     required: true,
                     className: 'zevioo-form-input user-name',
                     name: 'user_lastname',
-                    placeholder: 'Μ'
+                    placeholder: 'Μ',
+                    maxLength: '1',
                 },
                 value: '',
                 validation: {
@@ -93,7 +93,8 @@ class AskQuestion extends Component {
         },
         formIsValid: false,
         loading: false,
-        showSuccess: false
+        showSuccess: false,
+        showUserInfo: false
     }
     askHandler = ( event ) => {
         event.preventDefault();
@@ -107,7 +108,6 @@ class AskQuestion extends Component {
         const USR = document.getElementById('zevioo-reviews').getAttribute('data-usr');
         const PSW = document.getElementById('zevioo-reviews').getAttribute('data-psw');
         const EAN = render.getAttribute('data-ean');
-        console.log(USR, PSW, EAN)
         const questionForm = this.state.questionForm;
         
         const newReview = JSON.stringify({
@@ -123,13 +123,9 @@ class AskQuestion extends Component {
             TM:false
 
         })
-        console.log(newReview)
         axios.post( '/postquestion', newReview )
         .then( response => {
-            console.log(response)
             this.setState( { loading: false, showSuccess: true } );
-
-            alert("Thanks For the Question");
             this.setState(this.state);
 
         } )
@@ -188,7 +184,7 @@ class AskQuestion extends Component {
             formIsValid = updatedquestionForm[inputIdentifier].valid && formIsValid;
         }
 
-        this.setState({questionForm: updatedquestionForm, formIsValid: formIsValid});
+        this.setState({questionForm: updatedquestionForm, formIsValid: formIsValid, showUserInfo: true});
     }
 
     render() {
@@ -198,7 +194,7 @@ class AskQuestion extends Component {
         if (this.state.showSuccess) {
             return (
                 <div className="zevioo-form__success">
-                    <div className="zevioo-close-icons" onClick={this.props.click}><img src='https://zevioo.com/widgets/media/close.svg'  className="zevioo-close-svg" alt="zevioo Close"/></div>
+                    <div className="zevioo-close-icons" onClick={this.props.click}><img src='https://zevioo.com/widgets/media/close.svg'  className="zevioo-close-svg" alt="zevioo Close" height="30px"/></div>
                     <div className="zevioo-success-title">Thank you!</div>
                     <div className="zevioo-success-subTitle">
                         We’ve just sent you an email. Please confirm your email account by
@@ -217,19 +213,18 @@ class AskQuestion extends Component {
                         <div className="zevioo-form">
                             <div className="zevioo-form-group">
                             <label className="zevioo-label-big">
-                            What is your question?
+                            Ποια είναι η ερώτησή σας?
                             </label>
                             <Input 
                             elementType={this.state.questionForm.question.elementType}
                             elementConfig={this.state.questionForm.question.elementConfig}
                             value={this.state.questionForm.question.value}
                             changed={(event) => this.inputChangedHandler(event, 'question')} />
-                                <span className="zevioo-form-span">max. "150" χαρακτήρες</span>
                             </div>
                         </div>
                     </div>
 
-                    <div className="zevioo-write-review-footer">
+                    <div className="zevioo-write-review-footer" style={{display: (this.state.showUserInfo)? 'inherit' : 'none'}}>
                         <div className="zevioo-user-info zevioo-form">
                             <div className="zevioo-form-group">
                                 <div className="zevioo-form-group__inline">
@@ -251,7 +246,7 @@ class AskQuestion extends Component {
                                 </div>
                                 <div className="zevioo-form-group__inline">
                                     <label className="zevioo-label-big">
-                                        Age
+                                    Ηλικία
                                     </label>
                                     <Input 
                                     elementType={this.state.questionForm.age.elementType}

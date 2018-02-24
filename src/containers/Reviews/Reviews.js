@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Aux from '../../hoc/Aux';
-import Logo from '../../components/Logo/Logo.svg';
+
 
 
 import ReviewsHeader from './ReviewsHeader';
@@ -13,10 +13,11 @@ import AskQuestion from '../Reviews/Forms/AskQuestion';
 
 
 
+
 class Reviews extends Component {
 
     state = {
-        obj: [],
+        headerStats: [],
         stars: [],
         reviews: [],
         questions:[],
@@ -48,16 +49,14 @@ class Reviews extends Component {
                const reviews = obj.RL;
                const questions = obj.QL;
                const updatedQuestions = [...questions]
-               console.log(updatedQuestions)
                const updatedReviews = [...reviews]
                const updatedObj = {...obj}
 
                if(obj.RL.length > 0 ){ //Check if we have a list of reviews
-                console.log(updatedReviews, updatedObj)
                 this.setState({
                  reviews: updatedReviews,
-                 QE: updatedObj.QE,
-                 obj: {
+                 QE: false,
+                 headerStats: {
                      OR: updatedObj.OR,
                      RC: updatedObj.RC,
                      qualityRT: updatedObj.OKM[0].RT,
@@ -106,7 +105,7 @@ class Reviews extends Component {
             filterHandlerClick( e ) {
                 e.preventDefault();
                 let filterVal = e.target.closest('.zevioo-clickable').getAttribute('data-star')
-                console.log(typeof filterVal, filterVal)
+
                 
                 this.setState({
                     filterReview: true,
@@ -134,7 +133,6 @@ class Reviews extends Component {
                     }
 
     render() {
-        
         let toRender = null;
         if (this.state.loading) {
             toRender = <Loading />;
@@ -153,11 +151,11 @@ class Reviews extends Component {
                 <h3 className="zevioo-h3">
                 Αυθεντικές αξιολογήσεις 
                 <span className="zevioo-title">από το 
-                <img src='https://zevioo.com/widgets/media/Logo.svg' className="zevioo-logo" alt="zevioo logo"/>
+                <img src='https://zevioo.com/widgets/media/Logo.svg' className="zevioo-logo" alt="zevioo logo" height="16px"/>
                 </span> 
                 </h3>
                 <ReviewsHeader 
-                    obj={this.state.obj} 
+                headerStats={this.state.headerStats} 
                     writeReviewClick={( e )=> this.writeReviewHandler(e)}
                     askQuestionClick={( e )=> this.askQuestionsHandler(e)}
                     filterClick={( e )=> this.filterHandlerClick(e)}
@@ -171,7 +169,7 @@ class Reviews extends Component {
 
                 {this.state.displayReviews ?
                     <ReviewList 
-                        reviewsHeader={this.state.obj}
+                        reviewsHeader={this.state.headerStats}
                         reviews={this.state.reviews}
                         questionCount={this.state.questions.length}
                         isFilter={this.state.filterReview}
@@ -183,7 +181,7 @@ class Reviews extends Component {
                 
                 {this.state.displayQuestions && this.state.QE ? 
                     <QuestionList 
-                        reviewsHeader={this.state.obj}
+                        reviewsHeader={this.state.headerStats}
                         questions={this.state.questions}
                         displayReviewsClick={( e )=> this.displayReviewsHandler(e)}
                         displayQuestionsClick={( e )=> this.displayQuestionsHandler(e)}

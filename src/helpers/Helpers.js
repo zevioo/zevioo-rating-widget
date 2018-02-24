@@ -98,64 +98,34 @@ export const userStarRating = () => {
         removeClass(star3, "star-choosen");
         removeClass(star4, "star-choosen");
         removeClass(star5, "star-choosen");
-
-        star1.style.color = 'var(--zeviooColor)';
-        star2.style.color = 'var(--gray)';
-        star3.style.color = 'var(--gray)';
-        star4.style.color = 'var(--gray)';
-        star5.style.color = 'var(--gray)';
     })
     star2.addEventListener('click', function() {
         addClass(star2, "star-choosen");
-        removeClass(star1, "star-choosen");
+        addClass(star1, "star-choosen");
         removeClass(star3, "star-choosen");
         removeClass(star4, "star-choosen");
         removeClass(star5, "star-choosen");
-
-        star1.style.color = 'var(--zeviooColor)';
-        star2.style.color = 'var(--zeviooColor)';
-        star3.style.color = 'var(--gray)';
-        star4.style.color = 'var(--gray)';
-        star5.style.color = 'var(--gray)';
     })
     star3.addEventListener('click', function() {
         addClass(star3, "star-choosen");
-        removeClass(star2, "star-choosen");
-        removeClass(star1, "star-choosen");
+        addClass(star2, "star-choosen");
+        addClass(star1, "star-choosen");
         removeClass(star4, "star-choosen");
         removeClass(star5, "star-choosen");
-
-        star1.style.color = 'var(--zeviooColor)';
-        star2.style.color = 'var(--zeviooColor)';
-        star3.style.color = 'var(--zeviooColor)';
-        star4.style.color = 'var(--gray)';
-        star5.style.color = 'var(--gray)';
     })
     star4.addEventListener('click', function() {
         addClass(star4, "star-choosen");
-        removeClass(star2, "star-choosen");
-        removeClass(star3, "star-choosen");
-        removeClass(star1, "star-choosen");
+        addClass(star2, "star-choosen");
+        addClass(star3, "star-choosen");
+        addClass(star1, "star-choosen");
         removeClass(star5, "star-choosen");
-
-        star1.style.color = 'var(--zeviooColor)';
-        star2.style.color = 'var(--zeviooColor)';
-        star3.style.color = 'var(--zeviooColor)';
-        star4.style.color = 'var(--zeviooColor)';
-        star5.style.color = 'var(--gray)';
     })
     star5.addEventListener('click', function() {
         addClass(star5, "star-choosen");
-        removeClass(star2, "star-choosen");
-        removeClass(star3, "star-choosen");
-        removeClass(star4, "star-choosen");
-        removeClass(star1, "star-choosen");
-
-        star1.style.color = 'var(--zeviooColor)';
-        star2.style.color = 'var(--zeviooColor)';
-        star3.style.color = 'var(--zeviooColor)';
-        star4.style.color = 'var(--zeviooColor)';
-        star5.style.color = 'var(--zeviooColor)';
+        addClass(star2, "star-choosen");
+        addClass(star3, "star-choosen");
+        addClass(star4, "star-choosen");
+        addClass(star1, "star-choosen");
     })
 }
 export const userQualityRating = () => {
@@ -165,77 +135,42 @@ export const userQualityRating = () => {
     let box4 = document.getElementById("quality-input-4");
     let box5 = document.getElementById("quality-input-5");
 
-    // Givin Default Background Color
-    box1.style.color = 'var(--zeviooColor)';
-    box2.style.color = 'var(--zeviooColor)';
-    box3.style.color = 'var(--zeviooColor)';
-    box4.style.color = 'var(--zeviooColor)';
-    box5.style.color = 'var(--zeviooColor)';
-    
     box1.addEventListener('click', function() {
         addClass(box1, "quality-choosen");
         removeClass(box2, "quality-choosen");
         removeClass(box3, "quality-choosen");
         removeClass(box4, "quality-choosen");
         removeClass(box5, "quality-choosen");
-
-        box1.style.color = 'var(--zeviooColor)';
-        box2.style.color = 'var(--gray)';
-        box3.style.color = 'var(--gray)';
-        box4.style.color = 'var(--gray)';
-        box5.style.color = 'var(--gray)';
     })
     box2.addEventListener('click', function() {
         addClass(box2, "quality-choosen");
-        removeClass(box1, "quality-choosen");
+        addClass(box1, "quality-choosen");
         removeClass(box3, "quality-choosen");
         removeClass(box4, "quality-choosen");
         removeClass(box5, "quality-choosen");
-
-        box1.style.color = 'var(--zeviooColor)';
-        box2.style.color = 'var(--zeviooColor)';
-        box3.style.color = 'var(--gray)';
-        box4.style.color = 'var(--gray)';
-        box5.style.color = 'var(--gray)';
     })
     box3.addEventListener('click', function() {
         addClass(box3, "quality-choosen");
-        removeClass(box2, "quality-choosen");
-        removeClass(box1, "quality-choosen");
+        addClass(box2, "quality-choosen");
+        addClass(box1, "quality-choosen");
         removeClass(box4, "quality-choosen");
         removeClass(box5, "quality-choosen");
-
-        box1.style.color = 'var(--zeviooColor)';
-        box2.style.color = 'var(--zeviooColor)';
-        box3.style.color = 'var(--zeviooColor)';
-        box4.style.color = 'var(--gray)';
-        box5.style.color = 'var(--gray)';
     })
     box4.addEventListener('click', function() {
         addClass(box4, "quality-choosen");
-        removeClass(box2, "quality-choosen");
-        removeClass(box3, "quality-choosen");
-        removeClass(box1, "quality-choosen");
+        addClass(box2, "quality-choosen");
+        addClass(box3, "quality-choosen");
+        addClass(box1, "quality-choosen");
         removeClass(box5, "quality-choosen");
 
-        box1.style.color = 'var(--zeviooColor)';
-        box2.style.color = 'var(--zeviooColor)';
-        box3.style.color = 'var(--zeviooColor)';
-        box4.style.color = 'var(--zeviooColor)';
-        box5.style.color = 'var(--gray)';
     })
     box5.addEventListener('click', function() {
         addClass(box5, "quality-choosen");
-        removeClass(box2, "quality-choosen");
-        removeClass(box3, "quality-choosen");
-        removeClass(box4, "quality-choosen");
-        removeClass(box1, "quality-choosen");
+        addClass(box2, "quality-choosen");
+        addClass(box3, "quality-choosen");
+        addClass(box4, "quality-choosen");
+        addClass(box1, "quality-choosen");
 
-        box1.style.color = 'var(--zeviooColor)';
-        box2.style.color = 'var(--zeviooColor)';
-        box3.style.color = 'var(--zeviooColor)';
-        box4.style.color = 'var(--zeviooColor)';
-        box5.style.color = 'var(--zeviooColor)';
     })
 }
 export const userValueRating = () => {
@@ -244,13 +179,6 @@ export const userValueRating = () => {
     let box3 = document.getElementById("value-input-3");
     let box4 = document.getElementById("value-input-4");
     let box5 = document.getElementById("value-input-5");
-
-    // Givin Default Background Color
-    box1.style.color = 'var(--zeviooColor)';
-    box2.style.color = 'var(--zeviooColor)';
-    box3.style.color = 'var(--zeviooColor)';
-    box4.style.color = 'var(--zeviooColor)';
-    box5.style.color = 'var(--zeviooColor)';
     
     box1.addEventListener('click', function() {
         addClass(box1, "value-choosen");
@@ -259,63 +187,34 @@ export const userValueRating = () => {
         removeClass(box4, "value-choosen");
         removeClass(box5, "value-choosen");
 
-        box1.style.color = 'var(--zeviooColor)';
-        box2.style.color = 'var(--gray)';
-        box3.style.color = 'var(--gray)';
-        box4.style.color = 'var(--gray)';
-        box5.style.color = 'var(--gray)';
     })
     box2.addEventListener('click', function() {
         addClass(box2, "value-choosen");
-        removeClass(box1, "value-choosen");
+        addClass(box1, "value-choosen");
         removeClass(box3, "value-choosen");
         removeClass(box4, "value-choosen");
         removeClass(box5, "value-choosen");
-
-        box1.style.color = 'var(--zeviooColor)';
-        box2.style.color = 'var(--zeviooColor)';
-        box3.style.color = 'var(--gray)';
-        box4.style.color = 'var(--gray)';
-        box5.style.color = 'var(--gray)';
     })
     box3.addEventListener('click', function() {
         addClass(box3, "value-choosen");
-        removeClass(box2, "value-choosen");
-        removeClass(box1, "value-choosen");
+        addClass(box2, "value-choosen");
+        addClass(box1, "value-choosen");
         removeClass(box4, "value-choosen");
         removeClass(box5, "value-choosen");
-
-        box1.style.color = 'var(--zeviooColor)';
-        box2.style.color = 'var(--zeviooColor)';
-        box3.style.color = 'var(--zeviooColor)';
-        box4.style.color = 'var(--gray)';
-        box5.style.color = 'var(--gray)';
     })
     box4.addEventListener('click', function() {
         addClass(box4, "value-choosen");
-        removeClass(box2, "value-choosen");
-        removeClass(box3, "value-choosen");
-        removeClass(box1, "value-choosen");
+        addClass(box2, "value-choosen");
+        addClass(box3, "value-choosen");
+        addClass(box1, "value-choosen");
         removeClass(box5, "value-choosen");
-
-        box1.style.color = 'var(--zeviooColor)';
-        box2.style.color = 'var(--zeviooColor)';
-        box3.style.color = 'var(--zeviooColor)';
-        box4.style.color = 'var(--zeviooColor)';
-        box5.style.color = 'var(--gray)';
     })
     box5.addEventListener('click', function() {
         addClass(box5, "value-choosen");
-        removeClass(box2, "value-choosen");
-        removeClass(box3, "value-choosen");
-        removeClass(box4, "value-choosen");
-        removeClass(box1, "value-choosen");
-
-        box1.style.color = 'var(--zeviooColor)';
-        box2.style.color = 'var(--zeviooColor)';
-        box3.style.color = 'var(--zeviooColor)';
-        box4.style.color = 'var(--zeviooColor)';
-        box5.style.color = 'var(--zeviooColor)';
+        addClass(box2, "value-choosen");
+        addClass(box3, "value-choosen");
+        addClass(box4, "value-choosen");
+        addClass(box1, "value-choosen");
     })
 }
 

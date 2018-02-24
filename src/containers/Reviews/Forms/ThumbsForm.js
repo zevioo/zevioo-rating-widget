@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Aux from '../../../hoc/Aux';
-import ThumbUp from '../../../components/Svg/thumbUp.svg';
-import ThumbDown from '../../../components/Svg/thumbDown.svg';
-import Modal from '../../../components/UI/Modal/Modal';
+import Backdrop from '../../../components/UI/Backdrop/Backdrop';
 
 const render = document.getElementById('zevioo-reviews');
 const USR = document.getElementById('zevioo-reviews').getAttribute('data-usr');
 const PSW = document.getElementById('zevioo-reviews').getAttribute('data-psw');
 const EAN = render.getAttribute('data-ean');
-console.log(USR, PSW, EAN)
+
 
 class ThumbsForm extends Component {
     state = {
@@ -52,7 +50,7 @@ class ThumbsForm extends Component {
         const newThumb = JSON.stringify(this.state.postData)
         axios.post('/saveprdlike', newThumb)
         .then( response => {
-            console.log(response)
+
             this.setState({showSuccess: true});
         } )
         .catch( error => {
@@ -87,35 +85,34 @@ class ThumbsForm extends Component {
         </div>
         </div>)
 
-
-
     render() {
+       const showThumbForm = (
+            (this.state.showSuccess) ? this.showSuccessHtml :
+            <form className="zevioo-form__thumb" onSubmit={(e) => this.emailHandleSubmit(e , this.state.postData)}>
+            <div className="zevioo-user-info zevioo-form">
+                <div className="zevioo-form-group">
+                    <label className="zevioo-label-small">Please insert your email:</label>
+                    <input className='zevioo-form-input' type="email" value={this.state.emailValue} onChange={(e) => this.emailHandleChange(e)}  required />
+                </div>
+                <div className="zevioo-form-group zevioo-flex__right">
+                    <input className="zevioo-button zevioo-color__btn" type="submit" value="Submit" />
+                </div>
+            </div>
+        </form>
+        )
         return (
             <Aux>
-            <Modal show={this.state.showModal} modalClosed={(e) => this.modalCancelHandler(e)}> 
-                <div> 
-                { (this.state.showSuccess) ? this.showSuccessHtml :
-                    <form className="zevioo-form__thumb" onSubmit={(e) => this.emailHandleSubmit(e , this.state.postData)}>
-                        <div className="zevioo-user-info zevioo-form">
-                            <div className="zevioo-form-group">
-                                <label className="zevioo-label-small">Please insert your email:</label>
-                                <input className='zevioo-form-input' type="email" value={this.state.emailValue} onChange={(e) => this.emailHandleChange(e)}  required />
-                            </div>
-                            <div className="zevioo-form-group zevioo-flex__right">
-                                <input className="zevioo-button zevioo-color__btn" type="submit" value="Submit" />
-                            </div>
-                        </div>
-                    </form>
-                }
-                </div>
-            </Modal>
+            <Backdrop show={this.state.showModal} clicked={(e) => this.modalCancelHandler(e)} />
             <div className="zevioo-helpful">
-            Was it helpful? 
+                <div className={(this.state.showModal) ? "zevioo-helpful_on" : "" }>
+                {(this.state.showModal) ? showThumbForm : null}
+                </div>
+            <span className="zevioo-helpful-title">Σας φάνηκε χρήσιμη;</span>
             <span className="zevioo-thumb-up" onClick={(e) => this.thumbHandler(e, '1')}>
-                <img src='https://zevioo.com/widgets/media/thumbUp.svg' className="zevioo-thumb" alt="zevioo Thumb up"/> {this.state.likeCounter}
+                <img src='https://zevioo.com/widgets/media/thumbUp.svg' className="zevioo-thumb" alt="zevioo Thumb up" height="20px"/> {this.state.likeCounter}
             </span>
             <span className="zevioo-thumb-down" onClick={(e) => this.thumbHandler(e, '-1')}>
-                <img src='https://zevioo.com/widgets/media/thumbDown.svg'  className="zevioo-thumb" alt="zevioo Thumb Down"/> {this.state.dislikeCounter}
+                <img src='https://zevioo.com/widgets/media/thumbDown.svg'  className="zevioo-thumb" alt="zevioo Thumb Down" height="20px"/> {this.state.dislikeCounter}
             </span>    
             </div>
             </Aux>
