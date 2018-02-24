@@ -20,6 +20,14 @@ const input = ( props ) => {
             onChange={props.changed} />;
             break;
 
+            case ( 'checkbox' ):
+            inputElement = <input
+            type="checkbox"
+            {...props.elementConfig}
+            value={props.value}
+            onChange={props.changed} />;
+            break;
+
             case ( 'textarea' ):
             inputElement =
                 <textarea

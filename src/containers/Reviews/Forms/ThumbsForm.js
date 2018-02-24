@@ -77,11 +77,10 @@ class ThumbsForm extends Component {
         event.preventDefault();
       }
         showSuccessHtml = (
-        <div className="zevioo-form__success">
-        <div className="zevioo-success-title">Thank you!</div>
+        <div className="zevioo-thumb__success">
+        <div className="zevioo-success-title">Ευχαριστούμε!</div>
         <div className="zevioo-success-subTitle">
-            We’ve just sent you an email. Please confirm your email account by
-            clicking on the confirmation link and your Question will be published.
+            Η προτίμηση σας έχει καταχωρηθεί.
         </div>
         </div>)
 
@@ -91,11 +90,11 @@ class ThumbsForm extends Component {
             <form className="zevioo-form__thumb" onSubmit={(e) => this.emailHandleSubmit(e , this.state.postData)}>
             <div className="zevioo-user-info zevioo-form">
                 <div className="zevioo-form-group">
-                    <label className="zevioo-label-small">Please insert your email:</label>
+                    <div className="zevioo-thumb-title">Παρακαλώ εισάγετε το e-mail σας για να καταχωρηθεί η προτίμησή σας</div>
                     <input className='zevioo-form-input' type="email" value={this.state.emailValue} onChange={(e) => this.emailHandleChange(e)}  required />
                 </div>
                 <div className="zevioo-form-group zevioo-flex__right">
-                    <input className="zevioo-button zevioo-color__btn" type="submit" value="Submit" />
+                    <input className="zevioo-button zevioo-color__btn" type="submit" value="Υποβολή" />
                 </div>
             </div>
         </form>

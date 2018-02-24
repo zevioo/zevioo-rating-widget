@@ -25,13 +25,19 @@ class ReviewList extends Component {
       }
 
 render(){
-        const verifyIcon = (                                
+        const verifyIcon = ( 
+            <Aux> 
+            <span className="zevioo-verify__icon">
             <Verify
             width="20px"
             height="20px"
             fill="var(--green)"
             stroke="var(--green)"
             strokeWidth= "5px" />
+            </span>                             
+            <span className="zevioo-verify__text">Επιβεβαιωμένη αγορά</span>
+            </Aux> 
+
         )
 
         //Sort reviews
@@ -152,15 +158,15 @@ render(){
                        
                    </div>
                    <div className="zevioo-pull__right">
+                     <div className="zevioo-verify-buyer">
+                        {(review.CPF === true) && verifyIcon }
+                        </div>
                        <div className="zevioo-review-date">
                        {dateToDay(review.DT)}
                        </div>
                        <div className="zevioo-buyer-info">
                        <div className="zevioo-buyer-name">
                        {review.FN + " " + review.LN}
-                       </div>
-                       <div className="zevioo-verify-buyer">
-                           <span>{(review.CPF === true) && verifyIcon } </span>
                        </div>
                     </div>
                    </div>

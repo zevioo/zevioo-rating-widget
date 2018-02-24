@@ -201,7 +201,8 @@ class WriteReview extends Component {
         formIsValid: false,
         loading: false,
         showSuccess: false,
-        showUserInfo: false
+        showUserInfo: false,
+        termsChecked: true
     }
     orderHandler = ( event ) => {
         event.preventDefault();
@@ -305,6 +306,15 @@ class WriteReview extends Component {
 
         return isValid;
     }
+    termsHandleInputChange(event) {
+        const target = event.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
+    
+        this.setState({
+          [name]: value
+        });
+      }
 
     inputChangedHandler = (event, inputIdentifier) => {
         const updatedReviewForm = {
@@ -335,10 +345,10 @@ class WriteReview extends Component {
             return (
                 <div className="zevioo-form__success">
                     <div className="zevioo-close-icons" onClick={this.props.click}><img src='https://zevioo.com/widgets/media/close.svg' className="zevioo-close-svg" alt="zevioo Close" height="30px"/></div>
-                    <div className="zevioo-success-title">Thank you!</div>
+                    <div className="zevioo-success-title">Ευχαριστούμε!</div>
                     <div className="zevioo-success-subTitle">
-                        We’ve just sent you an email. Please confirm your email account by
-                        clicking on the confirmation link and your Question will be published.
+                    Σας έχουμε στείλει ένα email. Επιβεβαιώστε τον λογαριασμό σας
+                    κάνοντας κλικ στο σύνδεσμο επιβεβαίωσης και η ερώτησή σας θα δημοσιευθεί.
                     </div>
                 </div>
             )
@@ -458,8 +468,22 @@ class WriteReview extends Component {
                             changed={(event) => this.inputChangedHandler(event, 'email')} />
                         </div>
                     </div>
-                    <div className="zevioo-form-group zevioo-flex__right">
-                        <input type="submit" className="zevioo-button zevioo-color__btn" value="Δημοσιοποίηση" />
+                    <div className="zevioo-submit__flex">
+                        <div className="zevioo-submit__text">Αν η κριτική σας είναι ενδιαφέρουσα, ενδέχεται να δημοσιευθεί (χωρίς τα προσωπικά σας δεδομένα φυσικά) και σε άλλες ιστοσελίδες που συνεργάζονται με το zevioo.</div>
+                    </div>
+                    <div className="zevioo-submit__action">
+                    <div className="zevioo-submit__terms">
+                    <input
+                        name="terms"
+                        type="checkbox"
+                        required
+                        checked={this.state.isGoing}
+                    onChange={(e) => this.termsHandleInputChange(e)} />
+                    <div className="zevioo-submit__terms-text">Έχω διαβάσει και αποδέχομαι τους Όρους Χρήσης</div>
+                    </div>
+                    <div className="zevioo-submit__button">
+                    <input type="submit" className="zevioo-button zevioo-color__btn" value="Δημοσιοποίηση" />
+                    </div>
                     </div>
                 </div>
                     </div>

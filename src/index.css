@@ -175,6 +175,10 @@ img.zevioo-logo {
 .zevioo-thumb-down .zevioo-thumb {
   margin-bottom: -3px;
 }
+.zevioo-thumb-title {
+  margin-bottom: 20px;
+  font-size: 12px;
+}
 img.zevioo-icons {
   height: 20px;
   margin-right: 5px;
@@ -406,6 +410,15 @@ div#star-0 p {
   display: flex;
   flex-flow: row wrap;
 }
+.zevioo-single-review-header .zevioo-verify-buyer,
+.zevioo-single-review-header .zevioo-review-date{
+  display: inline-block;
+  vertical-align: middle;
+}
+span.zevioo-verify__text {
+  vertical-align: text-top;
+}
+
 @media (max-width:600px) {
   .zevioo-single-review-header {
     flex-direction: column;
@@ -419,6 +432,15 @@ div#star-0 p {
   .zevioo-buyer-info {
     margin-left: 10px;
   }
+}
+@media (max-width: 450px) {
+  span.zevioo-verify__text {
+    display: none;
+  }
+  .zevioo-verify-buyer {
+    vertical-align: unset;
+    margin-bottom: -5px;
+}
 }
 
 .zevioo-single-review::after {
@@ -1082,16 +1104,58 @@ input#user_year {
 /*zevioo Form Flexbox */
 .zevioo-user-info.zevioo-form {
   display: flex;
-  flex-direction: row;
-  align-items: flex-end;
-  flex-flow: row wrap;
+  flex-flow: column wrap;
 }
 .zevioo-flex__right {
   margin-left: auto;
 }
+.zevioo-submit__flex {
+  display: flex;
+  align-items: flex-start;
+  flex-flow: column wrap;
+}
+.zevioo-submit__action {
+  display: flex;
+  flex-flow: row wrap;
+}
+.zevioo-submit__terms {
+  margin: auto;
+  margin-left: 0;
+  display: flex;
+}
+.zevioo-submit__terms input {
+  margin-right: 20px;
+  transform: scale(2);
+  margin-left: 15px;
+}
+.zevioo-submit__terms-text {
+  font-size: 15px;
+  font-weight: 100;
+}
+.zevioo-submit__button {
+  margin-left: auto;
+}
+
+@media (max-width:650px) {
+  .zevioo-submit__action {
+    flex-flow: column wrap;
+}
+  .zevioo-submit__button {
+    margin: auto;
+    width: 100%;
+    margin-top: 20px;
+}
+}
+
+.zevioo-submit__text {
+  margin-top: 20px;
+  font-size: 15px;
+  font-weight: 100;
+  min-width: 100%;
+  margin-bottom: 20px;
+}
 .zevioo-color__btn {
   background-color: var(--zeviooColor);
-  width: 120px;
 }
 .zevioo-form-group__flex {
   display: flex;
@@ -1381,6 +1445,11 @@ cursor: pointer;
 .zevioo-form__success {
   padding: 50px 20px;
   text-align: center;
+  position: relative;
+}
+.zevioo-thumb__success {
+  text-align: center;
+  margin-bottom: 10px;
   position: relative;
 }
 .zevioo-close-icons {
