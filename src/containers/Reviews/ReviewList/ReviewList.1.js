@@ -124,10 +124,10 @@ render(){
                            <div className="review-content">
                                <div className="review-pn">
                                    <p className="review-positive">
-                                   <span className="zevioo-positive"> {review.PT ? '+' : ''} </span><span> {review.PT} </span>
+                                   <span className="zevioo-positive"> {review.PT.length > 0 ? '+' : ''} </span><span> {review.PT} </span>
                                    </p>
                                    <p className="review-negative">
-                                   <span className="zevioo-negative"> {review.PT ? '-' : ''} </span><span> {review.NT} </span>
+                                   <span className="zevioo-negative"> {review.NT.length > 0 ? '-' : ''} </span><span> {review.NT} </span>
                                    </p>
                                </div>
                                <div className="review-bars">

@@ -15,7 +15,7 @@ const productReviewActions = (props) => {
             <span className="zevioo-button-icon">
                 <img src='https://zevioo.com/widgets/media/star.svg'  className="zevioo-icons" alt="zevioo Review" height="20px"/>
             </span>
-            <span className="zevioo-button-text"> Αξιολόγηση </span>
+            <span className="zevioo-button-text"> Αξιολογήστε το </span>
         </div>
     )
 

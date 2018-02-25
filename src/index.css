@@ -161,7 +161,7 @@ span.zevioo-title {
 }
 img.zevioo-logo {
   height: 16px;
-  margin-left: 10px;
+  margin-left: 5px;
 }
 .zevioo-thumb {
   height: 17px;
@@ -401,7 +401,7 @@ div#star-0 p {
 .zevioo-reviews-list .zevioo-single-review {
   background: var(--softGray);
   border-radius: 10px;
-  margin-bottom: 40px;
+  margin-bottom: 10px;
 }
 
 .zevioo-single-review-header {
@@ -428,6 +428,10 @@ span.zevioo-verify__text {
     margin-left: 0 !important;
     align-items: flex-end;
     padding-right: 20px;
+  }
+  .zevioo-review-date{
+    order: 3;
+    margin-left: auto;
   }
   .zevioo-buyer-info {
     margin-left: 10px;
@@ -523,9 +527,6 @@ span.zevioo-verify__text {
 }
 .zevioo-buyer-info .star-ratings {
 display:block;
-}
-.zevioo-buyer-info {
-  display: flex;
 }
 .zevioo-buyer-name {
 
@@ -756,6 +757,7 @@ span.zevioo-box-5 {
 .zevioo-product-bar-title p {
   margin-top: 0;
   margin-bottom: 0;
+  line-height: 5px;
   font-size: 10px;
 }
 .zevioo-review-bar-box .zevioo-progress-score {
@@ -1095,7 +1097,7 @@ input#user_year {
   vertical-align: middle;
 }
 .zevioo-label-big {
-  font-weight: 800;
+  font-weight: 100;
   display: block;
   margin-bottom: 5px; 
 }
@@ -1433,7 +1435,7 @@ cursor: pointer;
     font-size: 9px;
   }
   select.zevioo-select__first {
-    font-size: 5px;
+    font-size: 9px;
 }
 .zevioo-reviews__btn-active, .zevioo-questions__btn-active {
   border-bottom: 2px solid var(--zeviooColor);
@@ -1529,7 +1531,7 @@ img.zevioo-close-svg {
   width: 150px;
 }
 .zevioo-product-score-bars {
-  margin-top: 20px;
+  margin-top: 5px;
   display: flex;
   align-items: flex-end;
   flex-direction: row;
@@ -1545,13 +1547,13 @@ img.zevioo-close-svg {
   width: 100px;
 }
 .zevioo-product-score-details .zevioo-progress-score {
-  height: 6px;
+  height: 8px;
 }
 .zevioo-product-score-details {
   margin-right: 0;
 }
 .zevioo-clickable {
-  font-size: 7px;
+  font-size: 9.6px;
 }
 
 .zevioo-form-group__actions a.zevioo-button, .zevioo-product-review-actions .zevioo-button {
@@ -1586,6 +1588,7 @@ img.zevioo-logo {
 }
 .zevioo-counter__text {
   font-size: 12px;
+  vertical-align: text-top;
 }
 .zevioo-rating__avg,
 .zevioo-product-score-details,
@@ -1598,6 +1601,22 @@ img.zevioo-logo {
 .zevioo-product-score-bars .zevioo-score-graph,
 .zevioo-score-graph {
   width: 90px;
+}
+
+.zevioo-button.zevioo-make-review {
+  min-width: auto;
+}
+.zevioo-button {
+  font-size: 10px; 
+}
+.zevioo-product-review-actions .zevioo-button {
+  margin: 20px 0;
+}
+.zevioo-action-filter {
+  margin-top: 0;
+}
+.zevioo-h3 .zevioo-title {
+  display: none;
 }
 
 }

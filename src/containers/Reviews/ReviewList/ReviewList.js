@@ -136,7 +136,6 @@ render(){
             }
         }
 
-
         const exportReviews = currentReviews.map((review,index) => {
             return (
                <div key={index} className="zevioo-single-review" > 
@@ -174,12 +173,16 @@ render(){
                <div className="zevioo-single-review-body">
                    <div className="zevioo-review-content">
                        <div className="zevioo-review-pn">
+                       {review.PT &&
                            <p className="zevioo-review-positive">
-                           <span className="zevioo-positive"> {review.PT ? '+' : ''} </span><span> {review.PT} </span>
+                           <span className="zevioo-positive"> + </span><span> {review.PT} </span>
                            </p>
+                       }
+                       {review.NT &&
                            <p className="zevioo-review-negative">
-                           <span className="zevioo-negative"> {review.PT ? '-' : ''} </span><span> {review.NT} </span>
+                           <span className="zevioo-negative"> {review.NT ? '-' : ''} </span><span> {review.NT} </span>
                            </p>
+                       }
                        </div>
                        <div className="zevioo-container__flex ">
                             <div className="zevioo-review-bars">

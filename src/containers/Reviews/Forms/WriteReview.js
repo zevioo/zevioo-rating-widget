@@ -46,7 +46,7 @@ class WriteReview extends Component {
                     maxLength: '300',
                     className: 'zevioo-form-input',
                     type: 'text',
-                    placeholder: 'πχ. Η λεπτόρευστη υφή του. Κάνει την εφαρμογή πολύ εύκολη.'
+                    placeholder: 'πχ. Επιγραμματικά, τα δυνατά του σημεία.'
                 },
                 value: '',
                 validation: {
@@ -63,7 +63,7 @@ class WriteReview extends Component {
                     maxLength: '300',
                     className: 'zevioo-form-input',
                     type: 'text',
-                    placeholder: 'πχ. Το άρωμά του ήταν πολύ βαρύ.'
+                    placeholder: 'πχ. Επιγραμματικά, τα αδύνατα, εάν υπάρχουν.'
                 },
                 value: '',
                 validation: {
@@ -122,7 +122,7 @@ class WriteReview extends Component {
                     type: 'text',
                     maxLength: '150',
                     required: true,
-                    placeholder: 'πχ. Το απόλυτο value for money προϊόν'
+                    placeholder: 'πχ. Περιγράψτε περιληπτικά την εμπειρία σας.'
 
                 },
                 value: '',
@@ -410,6 +410,9 @@ class WriteReview extends Component {
                             </div>
                             <div className="zevioo-form-group__flex">
                             <div className="zevioo-half__flex">
+                            <span className="zevioo-label-big">
+                            Γράψτε εδώ τι σας άρεσε περισσότερο;
+                            </span>
                                 <Input 
                                     elementType={this.state.reviewForm.positiveReview.elementType}
                                     elementConfig={this.state.reviewForm.positiveReview.elementConfig}
@@ -417,6 +420,9 @@ class WriteReview extends Component {
                                     changed={(event) => this.inputChangedHandler(event, 'positiveReview')} />
                                 </div>
                                 <div className="zevioo-half__flex">
+                                <span className="zevioo-label-big">
+                                Γράψτε εδώ τι δεν σας αρέσει;
+                                </span>
                                     <Input 
                                         elementType={this.state.reviewForm.negativeReview.elementType}
                                         elementConfig={this.state.reviewForm.negativeReview.elementConfig}

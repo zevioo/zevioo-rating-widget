@@ -150,9 +150,8 @@ class Reviews extends Component {
                 <Aux>
                 <h3 className="zevioo-h3">
                 Αυθεντικές αξιολογήσεις 
-                <span className="zevioo-title">από το 
+                <span className="zevioo-title">από το</span> 
                 <img src='https://zevioo.com/widgets/media/Logo.svg' className="zevioo-logo" alt="zevioo logo" height="16px"/>
-                </span> 
                 </h3>
                 <ReviewsHeader 
                 headerStats={this.state.headerStats} 
