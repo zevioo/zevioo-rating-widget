@@ -6,9 +6,11 @@ import StarIcon from './components/Svg/star'
 class Stars extends Component {
 
     state = {
-        rating: null,
-        reviews: null,
-        reviewsCounter: null
+        object: {EAN:'',rating:'',reviews:'',reviewsCounter:''},
+        EANS: [],
+        rating: [],
+        reviews: [],
+        reviewsCounter: []
     };
 
     starSvgTransparent = <StarIcon 
@@ -24,30 +26,32 @@ class Stars extends Component {
     strokeWidth= "5px"/>
 
     componentDidMount() {
-        const render = document.getElementById('zevioo-rating');
+        const render = document.querySelector('.zevioo-rating');
+        const zeviooRating = document.querySelectorAll('.zevioo-rating')
         const USR = render.getAttribute('data-usr');
         const PSW = render.getAttribute('data-psw');
-        const EAN = render.getAttribute('data-ean');
-
-        axios.post('/getreviews', {
-            USR: USR,
-            PSW: PSW,
-            EAN: EAN
-        })
-             .then(response => {
-               const obj = response.data;
-               const updatedObj = {...obj}
-
-                this.setState({
-                    rating: updatedObj.OR,
-                    reviews: updatedObj.RC,
-                    reviewsCounter: updatedObj.RL.length
+        let array = [];
+        zeviooRating.forEach(function (element, index) {
+            array.push(element.getAttribute('data-ean'));
+        });
+            axios.post('/getreviews', {
+                USR: USR,
+                PSW: PSW,
+                EAN: this.props.ean
+            })
+                 .then(response => {
+                   const obj = response.data;
+                   const updatedObj = {...obj}
+                    console.log(updatedObj)
+                    this.setState({
+                        rating: updatedObj.OR,
+                        reviews: updatedObj.RC,
+                        reviewsCounter: updatedObj.RL.length
+                     })
                  })
-             })
              };
 
     render() {
-
             if(this.state.reviewsCounter <= 0){
                 return null 
             }

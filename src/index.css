@@ -1537,13 +1537,13 @@ img.zevioo-close-svg {
   }
   .zevioo-product-rating .zevioo-product-score-bar {
     margin-right: 10px;
-    margin-left: 10%;
+    margin-left: 0;
 }
 .zevioo-rating__avg {
-  margin-left: 10%;
+  margin-left: 0;
 }
   .zevioo-product-rating .zevioo-product-score-bar:nth-child(2) {
-    margin-left: 0;
+    margin-left: 30px;
   }
 
   .zevioo-product-score {
@@ -1625,7 +1625,7 @@ img.zevioo-logo {
   margin-top: 0;
 }
 .zevioo-rating__avg {
-  margin-left: 10%;
+  margin-left: 0px;
 }
 .zevioo-product-bar-title p {
   font-size: 8px;
@@ -1683,15 +1683,15 @@ img.zevioo-logo {
 @media (max-width:400px) {
   .zevioo-product-rating .zevioo-product-score-bar {
     margin-right: 10px;
-    margin-left: 10px;
-}
-.zevioo-rating__avg {
-  margin-left: 10px;
+    margin-left: 0;
 }
 }
 @media (max-width:350px) {
   .zevioo-score-graph {
     width: 125px;
+}
+.zevioo-product-rating .zevioo-product-score-bar:nth-child(2) {
+  margin-left: 0;
 }
  }
 

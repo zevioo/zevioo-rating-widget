@@ -19,11 +19,14 @@ style_tag.setAttribute("href",
     "css/zeviooRatingWidget.css");
 (document.getElementsByTagName("head")[0] || document.documentElement).appendChild(style_tag);
 
-const zeviooRating = document.getElementById('zevioo-rating')
+const zeviooRating = document.querySelectorAll('.zevioo-rating')
 const zeviooReviews = document.getElementById('zevioo-reviews')
 
 if(zeviooRating) {
-    ReactDOM.render(<Stars />, zeviooRating);
+    zeviooRating.forEach(function (element, index) {
+        ReactDOM.render(<Stars key={index} ean={element.getAttribute('data-ean')} />, element);
+        console.log(element.getAttribute('data-ean'))
+    });
 }
 
 if(zeviooReviews) {
