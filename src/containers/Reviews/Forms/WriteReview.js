@@ -357,6 +357,7 @@ class WriteReview extends Component {
         return (
             <div className="zevioo-write-review-wrapper">
                 <div className="zevioo-write-review-box">
+                <div className="zevioo-close-icon" onClick={this.props.click}><img src='https://zevioo.com/widgets/media/close.svg' className="zevioo-close-svg" alt="zevioo Close" height="30px"/></div>
                 <form id="zevioo-review-form" onSubmit={this.orderHandler}>
                     <div className="zevioo-write-review-header">
                         <div className="zevioo-rating__item">
@@ -411,7 +412,7 @@ class WriteReview extends Component {
                             <div className="zevioo-form-group__flex">
                             <div className="zevioo-half__flex">
                             <span className="zevioo-label-big">
-                            Γράψτε εδώ τι σας άρεσε περισσότερο;
+                            Γράψτε εδώ τι σας άρεσε περισσότερο.
                             </span>
                                 <Input 
                                     elementType={this.state.reviewForm.positiveReview.elementType}
@@ -421,7 +422,7 @@ class WriteReview extends Component {
                                 </div>
                                 <div className="zevioo-half__flex">
                                 <span className="zevioo-label-big">
-                                Γράψτε εδώ τι δεν σας αρέσει;
+                                Γράψτε εδώ τι δεν σας αρέσε.
                                 </span>
                                     <Input 
                                         elementType={this.state.reviewForm.negativeReview.elementType}
@@ -485,10 +486,10 @@ class WriteReview extends Component {
                         required
                         checked={this.state.isGoing}
                     onChange={(e) => this.termsHandleInputChange(e)} />
-                    <div className="zevioo-submit__terms-text">Έχω διαβάσει και αποδέχομαι τους Όρους Χρήσης</div>
+                    <a href="https://www.zevioo.com/user-terms.html" target="_blank" rel="noopener noreferrer" className="zevioo-submit__terms-text">Αποδέχομαι την Πολιτική Απορρήτου Zevioo</a>
                     </div>
                     <div className="zevioo-submit__button">
-                    <input type="submit" className="zevioo-button zevioo-color__btn" value="Δημοσιοποίηση" />
+                    <button type="submit" className="zevioo-button zevioo-color__btn" form="zevioo-review-form" value="Submit">Δημοσιοποίηση</button>
                     </div>
                     </div>
                 </div>

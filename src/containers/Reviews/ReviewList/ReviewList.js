@@ -138,40 +138,38 @@ render(){
 
         const exportReviews = currentReviews.map((review,index) => {
             return (
-               <div key={index} className="zevioo-single-review" > 
+               <div key={index} itemProp="review" itemScope itemType="http://schema.org/Review" className="zevioo-single-review" > 
                <div className="zevioo-single-review-header zevioo-clearfix">
                    <div className="zevioo-pull__left">
-                       <div className="zevioo-icon" style={{display: 'none'}}>
-                           <label className="zevioo-user-letter">
-                           {review.FN.charAt(0)}
-                           </label>
-                           <span className="zevioo-check-small">✓</span>
-                       </div>
-                       <h2 className="zevioo-review-title">
+                       <h2 itemProp="name" className="zevioo-review-title">
                        {review.TT}
                        </h2>
-                       <div className="zevioo-star-ratings">
+                       <div itemProp="reviewRating" itemScope itemType="http://schema.org/Rating" className="zevioo-star-ratings">
                            <div className="zevioo-star-ratings-top" style={{width: percentage(review.RT ,5)+'%'}}><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
                            <div className="zevioo-star-ratings-bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                           <span className="zevioo-none" itemProp="ratingValue">{review.RT}</span>
+                           <span className="zevioo-none" itemProp="bestRating">5</span>
                        </div>
                        
                    </div>
                    <div className="zevioo-pull__right">
-                     <div className="zevioo-verify-buyer">
-                        {(review.CPF === true) && verifyIcon }
-                        </div>
-                       <div className="zevioo-review-date">
+                   {(review.CPF === true) && 
+                    <div className="zevioo-verify-buyer">
+                        {verifyIcon }
+                     </div>
+                    }
+                       <div itemProp="datePublished" content={review.DT} className="zevioo-review-date">
                        {dateToDay(review.DT)}
                        </div>
                        <div className="zevioo-buyer-info">
                        <div className="zevioo-buyer-name">
-                       {review.FN + " " + review.LN}
+                        Από: {review.FN + " " + review.LN}
                        </div>
                     </div>
                    </div>
                </div>
                <div className="zevioo-single-review-body">
-                   <div className="zevioo-review-content">
+                   <div itemProp="reviewBody" className="zevioo-review-content">
                        <div className="zevioo-review-pn">
                        {review.PT &&
                            <p className="zevioo-review-positive">
@@ -197,6 +195,9 @@ render(){
                        </div>
                     </div>
                 </div>
+                <span className="zevioo-none" itemProp="publisher" itemScope itemType="http://schema.org/Organization">
+                <meta itemProp="name" content="zevioo" />
+                </span>
              </div>
             )
         })
@@ -227,7 +228,7 @@ render(){
                 </div>
                 <div className="zevioo-paggination">
                     <div id="zevioo-pager">
-                        {(this.state.lastPager !== this.state.currentPage) ? <a onClick={(e) => pageNextHandleClick(e)} >Περισσότερες αξιολογήσεις</a> : ''}
+                        {(this.state.lastPager !== this.state.currentPage && this.props.reviews.length > 2 ) ? <a onClick={(e) => pageNextHandleClick(e)} >Περισσότερες αξιολογήσεις</a> : ''}
                     </div>
                 </div>
             </div>

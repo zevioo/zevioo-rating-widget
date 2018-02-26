@@ -3,29 +3,25 @@ import axios from 'axios';
 import Aux from '../../../hoc/Aux';
 import Backdrop from '../../../components/UI/Backdrop/Backdrop';
 
-const render = document.getElementById('zevioo-reviews');
-const USR = document.getElementById('zevioo-reviews').getAttribute('data-usr');
-const PSW = document.getElementById('zevioo-reviews').getAttribute('data-psw');
-const EAN = render.getAttribute('data-ean');
-
 
 class ThumbsForm extends Component {
     state = {
         likeCounter: this.props.likeCount,
         dislikeCounter: this.props.dislikeCount,
-        thumbable: false,
+        userIp: null,
+        thumbable: true,
         showModal: false,
-        emailValue: '',
         showSuccess: false,
         postData: {             
-            USR: USR,
-            PSW: PSW,
-            EAN: EAN,
-            EML: '',
+            USR: null,
+            PSW: null,
+            EAN: null,
             RID: this.props.reviewId,
             LT: 0
         }
     }
+
+
 
     modalHandler = () => {
         this.setState({showModal: true});
@@ -35,22 +31,37 @@ class ThumbsForm extends Component {
     }
     thumbHandler =(e, val) => {
         e.preventDefault(e);
-        this.modalHandler(e);
-        this.setState({postData: {
+        const render = document.getElementById('zevioo-reviews');
+        const USR = render.getAttribute('data-usr');
+        const PSW = render.getAttribute('data-psw');
+        const EAN = render.getAttribute('data-ean');
+
+        const dataSend = {
             USR: USR,
             PSW: PSW,
             EAN: EAN,
-            EML: '',
             RID: this.props.reviewId,
             LT: val
-        }})
+        };
+        if(val === '1') {
+
+            if(this.state.thumbable) {
+                this.setState({likeCounter: this.state.likeCounter + 1, thumbable:false})
+                this.postForm(dataSend);
+            }
+        }
+        if(val === '-1'){
+            if(this.state.thumbable) {
+            this.setState({dislikeCounter: this.state.dislikeCounter + 1, thumbable:false})
+            this.postForm(dataSend);
+            }
+        }
+        
     }
 
     postForm = (data) => {
-        const newThumb = JSON.stringify(this.state.postData)
-        axios.post('/saveprdlike', newThumb)
+        axios.post('/saveprdlike', data)
         .then( response => {
-
             this.setState({showSuccess: true});
         } )
         .catch( error => {
@@ -62,10 +73,6 @@ class ThumbsForm extends Component {
         this.setState({
             emailValue: event.target.value,
             postData: {             
-                USR: USR,
-                PSW: PSW,
-                EAN: EAN,
-                EML: event.target.value,
                 RID: this.props.reviewId,
                 LT: this.state.postData.LT
             }

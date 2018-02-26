@@ -21,6 +21,7 @@ class Reviews extends Component {
         stars: [],
         reviews: [],
         questions:[],
+        product: [],
         QE: false,
         loading: true,
         haveReviews: false,
@@ -52,6 +53,7 @@ class Reviews extends Component {
                const updatedReviews = [...reviews]
                const updatedObj = {...obj}
 
+
                if(obj.RL.length > 0 ){ //Check if we have a list of reviews
                 this.setState({
                  reviews: updatedReviews,
@@ -73,6 +75,7 @@ class Reviews extends Component {
                      fiveRT: updatedObj.RCL[4].RT,
                      totalReviews: updatedObj.RC
                  },
+                 product: {IMG:updatedObj.IMG, NM:updatedObj.NM},
                  questions: updatedQuestions,
                  loading: false,
                  haveReviews: true
@@ -155,6 +158,7 @@ class Reviews extends Component {
                 </h3>
                 <ReviewsHeader 
                 headerStats={this.state.headerStats} 
+                product={this.state.product}
                     writeReviewClick={( e )=> this.writeReviewHandler(e)}
                     askQuestionClick={( e )=> this.askQuestionsHandler(e)}
                     filterClick={( e )=> this.filterHandlerClick(e)}
