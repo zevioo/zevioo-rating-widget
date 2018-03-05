@@ -6,8 +6,6 @@ import StarIcon from './components/Svg/star'
 class Stars extends Component {
 
     state = {
-        object: {EAN:'',rating:'',reviews:'',reviewsCounter:''},
-        EANS: [],
         rating: [],
         reviews: [],
         reviewsCounter: []
@@ -16,14 +14,14 @@ class Stars extends Component {
     starSvgTransparent = <StarIcon 
     classs="zevioo-stars-tr"
     fill="transparent"
-    stroke="var(--lightGray)"
-    strokeWidth= "5px"/>
+    stroke="var(--darkGray)"
+    strokeWidth= "15px"/>
     
     starSvg = <StarIcon 
     classs="zevioo-stars-color"
     fill="var(--darkGray)"
     stroke="var(--darkGray)"
-    strokeWidth= "5px"/>
+    strokeWidth= "15px"/>
 
     componentDidMount() {
         const render = document.querySelector('.zevioo-rating');
@@ -42,7 +40,6 @@ class Stars extends Component {
                  .then(response => {
                    const obj = response.data;
                    const updatedObj = {...obj}
-                    console.log(updatedObj)
                     this.setState({
                         rating: updatedObj.OR,
                         reviews: updatedObj.RC,

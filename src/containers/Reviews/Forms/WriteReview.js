@@ -412,7 +412,7 @@ class WriteReview extends Component {
                             <div className="zevioo-form-group__flex">
                             <div className="zevioo-half__flex">
                             <span className="zevioo-label-big">
-                            Γράψτε εδώ τι σας άρεσε περισσότερο.
+                            Τι σας άρεσε περισσότερο;
                             </span>
                                 <Input 
                                     elementType={this.state.reviewForm.positiveReview.elementType}
@@ -422,7 +422,7 @@ class WriteReview extends Component {
                                 </div>
                                 <div className="zevioo-half__flex">
                                 <span className="zevioo-label-big">
-                                Γράψτε εδώ τι δεν σας αρέσε.
+                               Τι δεν σας αρέσε;
                                 </span>
                                     <Input 
                                         elementType={this.state.reviewForm.negativeReview.elementType}

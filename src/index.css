@@ -157,7 +157,9 @@ span.zevioo-loading__6 {-webkit-animation-delay: 0;animation-delay: 0;-ms-animat
     margin-top: 10px;
   }
 }
-
+.zevioo-rating {
+  font-family: var(--font-family-helvetica);
+}
 #zevioo-reviews {
   font-family: var(--font-family-helvetica);
   margin: auto;
@@ -419,14 +421,17 @@ div#star-0 p {
   padding-bottom: 10px;
 }
 
-.zevioo-single-review-header {
+.zevioo-single-review-header,
+.zevioo-single-question-header {
   padding: 20px;
   padding-bottom: 0;
   display: flex;
   flex-flow: row wrap;
 }
-.zevioo-single-review-header .zevioo-verify-buyer,
-.zevioo-single-review-header .zevioo-review-date{
+
+.zevioo-verify-buyer,
+.zevioo-review-date,
+.zevioo-question-date{
   display: inline-block;
   vertical-align: middle;
 }
@@ -438,7 +443,8 @@ span.zevioo-verify__text {
 }
 
 @media (max-width:600px) {
-  .zevioo-single-review-header {
+  .zevioo-single-review-header,
+  .zevioo-single-question-header {
     flex-direction: column;
   }
   .zevioo-pull__right {
@@ -446,7 +452,8 @@ span.zevioo-verify__text {
     margin-left: 0 !important;
     align-items: flex-end;
   }
-  .zevioo-review-date{
+  .zevioo-review-date,
+  .zevioo-question-date{
     order: 3;
     margin-left: auto;
   }
@@ -478,10 +485,6 @@ span.zevioo-verify__text {
   margin-bottom: 40px;
 }
 
-.zevioo-single-question-header {
-  padding: 20px;
-  padding-bottom: 0;
-}
 
 .zevioo-single-question::after {
   border-bottom: 1px solid var(--softGray);
@@ -546,7 +549,6 @@ display:block;
 .zevioo-buyer-name
 {
   padding-top: 2px;
-  vertical-align: top;
 }
 
 .zevioo-verify-buyer span {
@@ -848,7 +850,7 @@ height: 8px;
 .zevioo-button.zevioo-ask {
   display: inline-block;
   margin-right: 10px;
-  min-width: 100px;
+  min-width: 135px;
   text-align: center;
   background-color: var(--gray);
 }
@@ -857,7 +859,7 @@ height: 8px;
 }
 .zevioo-button.zevioo-make-review {
   display: inline-block;
-  min-width: 100px;
+  min-width: 135px;
   text-align: center;
 }
 .zevioo-button.zevioo-make-review:hover{
@@ -1441,10 +1443,10 @@ cursor: pointer;
 }
 @media (max-width:450px) {
   .zevioo-reviews__btn, .zevioo-questions__btn, .zevioo-reviews__btn-active, .zevioo-questions__btn-active, .zevioo-reviews__btn, .zevioo-reviews__btn-active {
-    font-size: 12px;
+    font-size: 10px;
   }
   select.zevioo-select__first {
-    font-size: 12px;
+    font-size: 10px;
 }
 .zevioo-reviews__btn-active, .zevioo-questions__btn-active {
   border-bottom: 2px solid var(--zeviooColor);
@@ -1639,7 +1641,7 @@ img.zevioo-logo {
   font-size: 10px; 
 }
 .zevioo-product-review-actions .zevioo-button {
-  margin: 20px 0;
+  margin: 20px 5px;
 }
 .zevioo-action-filter {
   margin-top: 0;

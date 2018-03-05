@@ -207,8 +207,6 @@ class AskQuestion extends Component {
             <div className="zevioo-write-review-wrapper">
                 <div className="zevioo-write-review-box">
                 <form id="zevioo-question-form" onSubmit={this.askHandler}>
-                  
-
                     <div className="zevioo-write-review-body">
                         <div className="zevioo-form">
                             <div className="zevioo-form-group">
@@ -226,8 +224,8 @@ class AskQuestion extends Component {
 
                     <div className="zevioo-write-review-footer" style={{display: (this.state.showUserInfo)? 'inherit' : 'none'}}>
                         <div className="zevioo-user-info zevioo-form">
-                            <div className="zevioo-form-group">
-                                <div className="zevioo-form-group__inline">
+                            <div className="zevioo-form-group__flex_end">
+                                <div className="zevioo-half__flex_end">
                                     <label className="zevioo-label-big">
                                     Όνομα & αρχικό επιθέτου
                                     </label>
@@ -237,14 +235,14 @@ class AskQuestion extends Component {
                                     value={this.state.questionForm.firstName.value}
                                     changed={(event) => this.inputChangedHandler(event, 'firstName')} />
                                 </div>
-                                <div className="zevioo-form-group__inline">
+                                <div className="zevioo-half__flex_end">
                                     <Input 
                                     elementType={this.state.questionForm.lastName.elementType}
                                     elementConfig={this.state.questionForm.lastName.elementConfig}
                                     value={this.state.questionForm.lastName.value}
                                     changed={(event) => this.inputChangedHandler(event, 'lastName')} />
                                 </div>
-                                <div className="zevioo-form-group__inline">
+                                <div className="zevioo-half__flex_end">
                                     <label className="zevioo-label-big">
                                     Ηλικία
                                     </label>
@@ -254,16 +252,19 @@ class AskQuestion extends Component {
                                     value={this.state.questionForm.age.value}
                                     changed={(event) => this.inputChangedHandler(event, 'age')} />
                                 </div>
-                            </div>
-                            <div className="zevioo-form-group">
+                                <div className="zevioo-half__flex_end">
+                                <span className="zevioo-label-big">
+                                Email
+                                </span>
                                 <Input 
                                 elementType={this.state.questionForm.email.elementType}
                                 elementConfig={this.state.questionForm.email.elementConfig}
                                 value={this.state.questionForm.email.value}
                                 changed={(event) => this.inputChangedHandler(event, 'email')} />
                             </div>
-                            <div className="zevioo-form-group zevioo-flex__right">
-                                <input type="submit" className="zevioo-button zevioo-color__btn" value="Publish" />
+                            </div>
+                            <div className="zevioo-submit__button">
+                            <button type="submit" className="zevioo-button zevioo-color__btn" form="zevioo-question-form" value="Submit">Δημοσιοποίηση</button>
                             </div>
                         </div>
                     </div>

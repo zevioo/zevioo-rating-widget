@@ -100,6 +100,11 @@ render(){
                    
                </div>
                <div className="zevioo-pull__right">
+                {(question.CP === 1) && 
+                    <div className="zevioo-verify-buyer">
+                        {verifyIcon }
+                    </div>
+                    }
                    <div className="zevioo-question-date">
                    {dateToDay(question.CD)}
                    </div>
@@ -108,9 +113,6 @@ render(){
                    {question.FN}
                    </div>
                
-                   <div className="zevioo-verify-buyer">
-                   <span>{(question.CP === 1) && verifyIcon } </span>
-                   </div>
                 </div>
                </div>
            </div>
