@@ -53,6 +53,7 @@
 .star-choosen svg,
 .quality-choosen svg,
 .value-choosen svg {
+  fill: rgb(255, 13, 97);
   fill:var(--zeviooColor);
 } 
 
@@ -158,9 +159,11 @@ span.zevioo-loading__6 {-webkit-animation-delay: 0;animation-delay: 0;-ms-animat
   }
 }
 .zevioo-rating {
+  font-family: Helvetica, sans-serif;
   font-family: var(--font-family-helvetica);
 }
 #zevioo-reviews {
+  font-family: Helvetica, sans-serif;
   font-family: var(--font-family-helvetica);
   margin: auto;
   max-width: 1100px;
@@ -228,6 +231,7 @@ img.zevioo-icons {
   
   text-align: center;
   margin: 20px 0 40px;
+  border-bottom: 1px solid #ededed;
   border-bottom: 1px solid var(--softGray);
   padding-bottom: 25px;
   display: -webkit-box;
@@ -297,6 +301,7 @@ img.zevioo-icons {
 .zevioo-avg-text {
   font-weight: 800;
   font-size: 50px;
+  color: rgb(105,105,105);
   color: var(--darkGray);
   line-height: 1;
   text-align: left;
@@ -306,9 +311,13 @@ img.zevioo-icons {
 .zevioo-avg-text span,
 .zevioo-counter__text {
   font-size: 15px;
+  color: rgb(105,105,105);
   color: var(--darkGray);
 }
-
+.zevioo-star-value span, 
+.zevioo-bar-value span {
+  font-size: 12px;
+}
 @media (max-width: 600px) {
 .zevioo-product-score {
     margin-bottom: 5% ;
@@ -337,6 +346,7 @@ img.zevioo-icons {
 }
 .zevioo-avg-score sup {
   font-size: 15px;
+  color: #ededed;
   color: var(--softGray);
   margin-top: 20px;
   margin-left: 4px;
@@ -346,6 +356,7 @@ img.zevioo-icons {
 }
 
 .zevioo-score-graph {
+  background: rgb(216,216,216);
   background: var(--lightGray);
   display: inline-block;
   width: 125px;
@@ -353,6 +364,7 @@ img.zevioo-icons {
 .zevioo-progress-score {
   display: block;
   height: 8px;
+  background: rgb(56,56,56);
   background: var(--softBlack);
 }
 
@@ -382,6 +394,7 @@ div#star-0 p {
 
 .zevioo-star-ratings {
   unicode-bidi: bidi-override;
+  color: rgb(216,216,216);
   color: var(--lightGray);
   font-size: 20px;
   position: relative;
@@ -390,6 +403,7 @@ div#star-0 p {
   margin-right: 15px;
 }
 .zevioo-star-ratings-top {
+  color: rgb(255, 13, 97);
   color: var(--zeviooColor);
   padding: 0;
   position: absolute;
@@ -417,6 +431,7 @@ div#star-0 p {
 }
 
 .zevioo-reviews-list .zevioo-single-review {
+  background: #ededed;
   background: var(--softGray);
   border-radius: 10px;
   margin-bottom: 10px;
@@ -435,10 +450,11 @@ div#star-0 p {
 .zevioo-review-date,
 .zevioo-question-date{
   display: inline-block;
-  vertical-align: middle;
+  vertical-align: text-bottom;
 }
 .zevioo-verify-buyer {
 margin-right: 10px;
+vertical-align: text-bottom;
 }
 span.zevioo-verify__text {
   vertical-align: text-top;
@@ -482,6 +498,7 @@ span.zevioo-verify__text {
 
 /* Questions single */
 .zevioo-reviews-list .zevioo-single-question {
+  background: #ededed;
   background: var(--softGray);
   border-radius: 10px;
   margin-bottom: 40px;
@@ -489,6 +506,7 @@ span.zevioo-verify__text {
 
 
 .zevioo-single-question::after {
+  border-bottom: 1px solid #ededed;
   border-bottom: 1px solid var(--softGray);
   content: "";
   display: block;
@@ -506,6 +524,7 @@ span.zevioo-verify__text {
 .zevioo-pull__right {
   margin-left: auto;
   text-align: right;
+  color: hsl(0, 0%, 40%);
   color: var(--hslGray);
   font-weight: 100;
 }
@@ -517,6 +536,7 @@ span.zevioo-verify__text {
   border-radius: 50%;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
+  background: hsl(15, 80%, 50%);
   background: var(--red);
 }
 
@@ -534,6 +554,7 @@ span.zevioo-verify__text {
 
 .zevioo-check-small {
   display: inline-block;
+  color: rgb(82, 185, 82);
   color: var(--green);
   position: absolute;
   left: 31px;
@@ -550,14 +571,17 @@ display:block;
 .zevioo-verify-buyer,
 .zevioo-buyer-name
 {
+  font-size: 13px;
   padding-top: 2px;
 }
 
 .zevioo-verify-buyer span {
+  color: rgb(82, 185, 82);
   color: var(--green);
   font-size: 11px;
 }
 .zevioo-rating-stars {
+  color: #ffd200;
   color: var(--primary);
 }
 .zevioo-review-date,
@@ -577,6 +601,7 @@ display:block;
 .zevioo-helpful {
   margin-left: auto;
   z-index: 500;
+  color: hsl(0, 0%, 40%);
   color: var(--hslGray);
 }
 .zevioo-helpful_on {
@@ -625,6 +650,7 @@ span.zevioo-review-title {
   margin-top: 0;
 }
 .zevioo-question-title span {
+  color: rgb(55, 150, 253);
   color: var(--blue);
   font-size: 10px;
   margin-left: 5px;
@@ -646,6 +672,7 @@ span.zevioo-review-title {
   height: 50px;
   margin-right: 8px;
   border-radius: 50%;
+  border: 1px solid hsl(0, 0%, 40%);
   border: 1px solid var(--hslGray);
 }
 .zevioo-question-logo {
@@ -666,6 +693,7 @@ span.zevioo-review-title {
   width: 70%;
   margin-left: 10px;
   font-weight: 100;
+  color: hsl(0, 0%, 40%);
   color: var(--hslGray);
 }
 
@@ -684,16 +712,20 @@ p .zevioo-positive {
   display: inline-block;
   content: " + ";
   font-size: 25px;
+  color: rgb(82, 185, 82);
   color: var(--green);
   width: 1rem;
+  margin-right: 5px;
 }
 
 p .zevioo-negative {
   display: inline-block;
   content: " - ";
   font-size: 25px;
+  color: hsl(15, 80%, 50%);
   color: var(--red);
   width: 1rem;
+  margin-right: 5px;
 }
 
 .zevioo-review-bar,
@@ -854,9 +886,11 @@ height: 8px;
   margin-right: 10px;
   min-width: 135px;
   text-align: center;
+  background-color: rgb(128,128,128);
   background-color: var(--gray);
 }
 .zevioo-button.zevioo-ask:hover {
+  background-color: rgb(105,105,105);
   background-color: var(--darkGray);
 }
 .zevioo-button.zevioo-make-review {
@@ -865,11 +899,13 @@ height: 8px;
   text-align: center;
 }
 .zevioo-button.zevioo-make-review:hover{
+  background-color: rgb(128,128,128);
   background-color: var(--gray);
 }
 .zevioo-button {
     font-size: 12px;
     color: var(--white);
+    background-color: rgb(105,105,105);
     background-color: var(--darkGray);
     box-sizing: border-box;
     padding: 10px;
@@ -1063,6 +1099,7 @@ label.zevioo-label-small.zevioo-rating-title {
   max-width: 100%;
   font-size: 13px;
   color: #737373;
+  border: solid 1px rgb(0,0,0);
   border: solid 1px var(--black);
   border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -1170,6 +1207,7 @@ input#user_year {
   margin-bottom: 20px;
 }
 .zevioo-color__btn {
+  background-color: rgb(255, 13, 97);
   background-color: var(--zeviooColor);
 }
 .zevioo-form-group__flex {
@@ -1192,10 +1230,12 @@ input#user_year {
   height: auto;
 }
 #zevioo-positive-review {
+  border-color: rgb(82, 185, 82);
   border-color: var(--green);
   
 }
 #zevioo-negative-review {
+  border-color: hsl(15, 80%, 50%);
   border-color: var(--red);
 }
 .zevioo-review-title {
@@ -1256,6 +1296,7 @@ span.zevioo-form-span {
 }
 .zevioo-add-rating label{
   display: inline-block;
+  color: rgb(255, 13, 97);
   color: var(--zeviooColor);
   font-size: 30px;
   margin-right: 5px;
@@ -1354,6 +1395,7 @@ span.zevioo-form-span {
   font-size: 15px;
 }
 #zevioo-pager a {
+color: rgb(55, 150, 253);
 color: var(--blue);
 cursor: pointer;
 }
@@ -1394,18 +1436,22 @@ cursor: pointer;
 .zevioo-dropdown__label {
   margin: auto;
   font-weight: 100;
+  color: hsl(0, 0%, 40%);
   color: var(--hslGray);
+  font-size: 12px;
 }
 .zevioo-select__first {
   border: none;
   background: transparent;
   font-weight: 800;
+  font-size: 13px;
 }
 .zevioo-action-filter .zevioo-h3 {
   margin-bottom: 0;
 }
 .zevioo-filter__review {
   padding-bottom: 5px;
+  color: rgb(255, 13, 97);
   color: var(--zeviooColor);
 }
 .zevioo-reviews__btn,
@@ -1416,6 +1462,7 @@ cursor: pointer;
 }
 .zevioo-reviews__btn-active,
 .zevioo-questions__btn-active {
+  border-bottom: 5px solid rgb(255, 13, 97);
   border-bottom: 5px solid var(--zeviooColor);
   padding-bottom: 2px;
   font-size: 16px;
@@ -1451,6 +1498,7 @@ cursor: pointer;
     font-size: 10px;
 }
 .zevioo-reviews__btn-active, .zevioo-questions__btn-active {
+  border-bottom: 2px solid rgb(255, 13, 97);
   border-bottom: 2px solid var(--zeviooColor);
   padding-bottom: 5px;
   line-height: 0;
@@ -1718,6 +1766,7 @@ img.zevioo-logo {
  .zevioo-rating-value {
   font-weight: 800;
   font-size: 25px;
+  color: rgb(105,105,105);
   color: var(--darkGray);
   line-height: 1;
   text-align: left;
@@ -1742,5 +1791,10 @@ img.zevioo-logo {
 .zevioo-rating-counter {
   width: auto;
   font-size: 10px;
+  color: rgb(128,128,128);
   color: var(--gray);
+}
+
+.zevioo-single-review-body .zevioo-score-graph {
+  width: 100px;
 }
