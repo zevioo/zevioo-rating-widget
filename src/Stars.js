@@ -29,9 +29,13 @@ class Stars extends Component {
         const USR = render.getAttribute('data-usr');
         const PSW = render.getAttribute('data-psw');
         let array = [];
-        zeviooRating.forEach(function (element, index) {
-            array.push(element.getAttribute('data-ean'));
-        });
+        for(var i = 0; i < zeviooRating.length; i++)
+        {
+            array.push(zeviooRating[i].getAttribute('data-ean'));
+        }
+        // zeviooRating.forEach(function (element, index) {
+        //     array.push(element.getAttribute('data-ean'));
+        // });
             axios.post('/getreviews', {
                 USR: USR,
                 PSW: PSW,

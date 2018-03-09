@@ -176,6 +176,7 @@ span.zevioo-title {
 img.zevioo-logo {
   height: 16px;
   margin-left: 5px;
+  display: inline-block;
 }
 .zevioo-thumb {
   height: 17px;
@@ -197,6 +198,7 @@ img.zevioo-icons {
   height: 15px;
   margin-right: 5px;
   vertical-align: middle;
+  display: inline-block;
 }
 
 .zevioo-clearfix::after {
@@ -294,7 +296,7 @@ img.zevioo-icons {
 }
 .zevioo-avg-text {
   font-weight: 800;
-  font-size: 60px;
+  font-size: 50px;
   color: var(--darkGray);
   line-height: 1;
   text-align: left;
@@ -346,7 +348,7 @@ img.zevioo-icons {
 .zevioo-score-graph {
   background: var(--lightGray);
   display: inline-block;
-  width: 150px;
+  width: 125px;
 }
 .zevioo-progress-score {
   display: block;
@@ -1256,7 +1258,7 @@ span.zevioo-form-span {
   display: inline-block;
   color: var(--zeviooColor);
   font-size: 30px;
-  margin-right: 10px;
+  margin-right: 5px;
   cursor: pointer;
 }
 .zevioo-add-rating input[type='radio'] {
@@ -1608,6 +1610,7 @@ textarea#zevioo-title-review {
 img.zevioo-logo {
   height: 11px;
   margin-left: 8px;
+  display: inline-block;
 }
 .zevioo-avg-text {
   font-size: 50px;

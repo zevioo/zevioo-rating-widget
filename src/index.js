@@ -22,9 +22,13 @@ const zeviooRating = document.querySelectorAll('.zevioo-rating')
 const zeviooReviews = document.getElementById('zevioo-reviews')
 
 if(zeviooRating) {
-    zeviooRating.forEach(function (element, index) {
-        ReactDOM.render(<Stars key={index} ean={element.getAttribute('data-ean')} />, element);
-    });
+    // zeviooRating.forEach(function (element, index) {
+    //     ReactDOM.render(<Stars key={index} ean={element.getAttribute('data-ean')} />, element);
+    // });
+    for(var i = 0; i < zeviooRating.length; i++)
+    {
+    ReactDOM.render(<Stars key={i} ean={zeviooRating[i].getAttribute('data-ean')} />, zeviooRating[i]);
+    }
 }
 
 if(zeviooReviews) {
