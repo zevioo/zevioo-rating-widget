@@ -146,7 +146,6 @@ class Reviews extends Component {
 
     render() {
         // make Json-Ld
-        console.log(this.state)
         let JsonLd = {
             "@context": "http://schema.org",
             "@type": "Product",
