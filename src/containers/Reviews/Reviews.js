@@ -148,16 +148,38 @@ class Reviews extends Component {
         // make Json-Ld
         let JsonLd = {
             "@context": "http://schema.org",
-            "@type": "Product",
-            "image": this.state.product.IMG,
-            "name": this.state.product.NM,
-            "aggregateRating": {
               "@type": "AggregateRating",
               "bestRating": "5",
               "ratingCount": this.state.headerStats.RC,
-              "ratingValue": this.state.headerStats.OR
+              "ratingValue": this.state.headerStats.OR,
+            "itemReviewed": {
+                "@type": "Product",
+                "image": this.state.product.IMG,
+                "name": this.state.product.NM
+              },
+        }
+          let reviewJsonLd = this.state.reviews.map((review, index) =>{ return {
+            "@context": "http://schema.org/",
+            "@type": "Review",
+            "description": review.NT && review.PT,
+            "name": review.TT,
+            "itemReviewed": {
+              "@type": "Product",
+              "name": this.state.product.NM
+            },
+            "author": {
+              "@type": "Person",
+              "name": review.FN
+            },
+            "datePublished": review.DT.slice(0,10),
+            "reviewRating": {
+              "@type": "Rating",
+              "bestRating": "5",
+              "ratingValue": review.RT,
+              "worstRating": "1"
             }
           }
+              })
         let toRender = null;
         if (this.state.loading) {
             toRender = <Loading />;
@@ -175,6 +197,8 @@ class Reviews extends Component {
                 
                 <Aux>
                 {this.appendLdJson(JsonLd)}
+                {this.appendLdJson(reviewJsonLd)}
+                
                 <h3 className="zevioo-h3">
                 Αυθεντικές αξιολογήσεις 
                 <span className="zevioo-title">από το</span> 
