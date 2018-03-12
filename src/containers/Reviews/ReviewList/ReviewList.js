@@ -138,17 +138,17 @@ render(){
 
         const exportReviews = currentReviews.map((review,index) => {
             return (
-               <div key={index} itemProp="review" itemScope itemType="http://schema.org/Review" className="zevioo-single-review" > 
+               <div key={index} className="zevioo-single-review" > 
                <div className="zevioo-single-review-header zevioo-clearfix">
                    <div className="zevioo-pull__left">
-                       <h2 itemProp="name" className="zevioo-review-title">
+                       <h2 className="zevioo-review-title">
                        {review.TT}
                        </h2>
-                       <div itemProp="reviewRating" itemScope itemType="http://schema.org/Rating" className="zevioo-star-ratings">
+                       <div className="zevioo-star-ratings">
                            <div className="zevioo-star-ratings-top" style={{width: percentage(review.RT ,5)+'%'}}><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
                            <div className="zevioo-star-ratings-bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-                           <span className="zevioo-none" itemProp="ratingValue">{review.RT}</span>
-                           <span className="zevioo-none" itemProp="bestRating">5</span>
+                           <span className="zevioo-none">{review.RT}</span>
+                           <span className="zevioo-none">5</span>
                        </div>
                        
                    </div>
@@ -158,18 +158,18 @@ render(){
                         {verifyIcon }
                      </div>
                     }
-                       <div itemProp="datePublished" content={review.DT} className="zevioo-review-date">
+                       <div content={review.DT} className="zevioo-review-date">
                        {dateToDay(review.DT)}
                        </div>
                        <div className="zevioo-buyer-info">
                        <div className="zevioo-buyer-name">
-                        Από: {review.FN + " " + review.LN}
+                        Από:{review.FN + " " + review.LN}
                        </div>
                     </div>
                    </div>
                </div>
                <div className="zevioo-single-review-body">
-                   <div itemProp="reviewBody" className="zevioo-review-content">
+                   <div className="zevioo-review-content">
                        <div className="zevioo-review-pn">
                        {review.PT &&
                            <p className="zevioo-review-positive">
@@ -195,9 +195,6 @@ render(){
                        </div>
                     </div>
                 </div>
-                <span className="zevioo-none" itemProp="publisher" itemScope itemType="http://schema.org/Organization">
-                <meta itemProp="name" content="zevioo" />
-                </span>
              </div>
             )
         })

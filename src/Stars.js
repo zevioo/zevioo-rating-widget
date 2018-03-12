@@ -57,8 +57,8 @@ class Stars extends Component {
                 return null 
             }
             return (
-                <div itemProp="reviewRating" itemScope itemType="http://schema.org/Rating" className="zevioo-star-rating">
-                <span className="zevioo-rating-value" itemProp="ratingValue">{this.state.rating.toFixed(1)}</span>    
+                <div className="zevioo-star-rating">
+                <span className="zevioo-rating-value">{this.state.rating.toFixed(1)}</span>    
                     <div className="zevioo-stars-container">
                         <div className="zevioo-stars-up">
                             <span>{this.starSvgTransparent}</span>
@@ -75,8 +75,8 @@ class Stars extends Component {
                             <span>{this.starSvg}</span>
                         </div>
                     </div>
-                    <div itemProp="ratingCount" className="zevioo-rating-counter">{this.state.reviewsCounter} αξιολογήσεις </div>
-                    <span className="zevioo-none" itemProp="bestRating">5</span>
+                    <div className="zevioo-rating-counter">{this.state.reviewsCounter} αξιολογήσεις </div>
+                    <span className="zevioo-none">5</span>
                 </div>
             );
     }

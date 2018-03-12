@@ -89,6 +89,15 @@ class Reviews extends Component {
              })
              };
 
+             // Append Structured Data 
+             appendLdJson = (data) => {
+                var script_tag = document.createElement('script');
+                script_tag.setAttribute("type","application/ld+json");
+                script_tag.innerHTML = JSON.stringify(data);
+                (document.getElementsByTagName("head")[0] || document.documentElement).appendChild(script_tag);
+             }
+
+
              askQuestionsHandler = (e) => {
                  e.preventDefault();
                  this.setState({
@@ -136,6 +145,20 @@ class Reviews extends Component {
                     }
 
     render() {
+        // make Json-Ld
+        console.log(this.state)
+        let JsonLd = {
+            "@context": "http://schema.org",
+            "@type": "Product",
+            "image": this.state.product.IMG,
+            "name": this.state.product.NM,
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "bestRating": "5",
+              "ratingCount": this.state.headerStats.RC,
+              "ratingValue": this.state.headerStats.OR
+            }
+          }
         let toRender = null;
         if (this.state.loading) {
             toRender = <Loading />;
@@ -150,7 +173,9 @@ class Reviews extends Component {
                 )
             }
             return (
+                
                 <Aux>
+                {this.appendLdJson(JsonLd)}
                 <h3 className="zevioo-h3">
                 Αυθεντικές αξιολογήσεις 
                 <span className="zevioo-title">από το</span> 
