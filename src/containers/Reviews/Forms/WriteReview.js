@@ -248,7 +248,7 @@ class WriteReview extends Component {
             NT: reviewForm.negativeReview.value,
             PT: reviewForm.positiveReview.value,
             KM: [{
-                    NM: "Value for money",
+                    NM: "Αξίζει τα λεφτά του",
                     RT: reviewForm.valueBox.value
                 },
                 {
