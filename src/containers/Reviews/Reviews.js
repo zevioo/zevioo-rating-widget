@@ -11,6 +11,8 @@ import WriteReview from '../Reviews/Forms/WriteReview';
 import Loading from '../../components/Loading/Loading';
 import AskQuestion from '../Reviews/Forms/AskQuestion';
 
+import ProductReviewActions from '../Reviews/Header/ProductReviewActions';
+
 
 
 
@@ -60,7 +62,7 @@ class Reviews extends Component {
                  QE: false,
                  headerStats: {
                      OR: updatedObj.OR,
-                     RC: updatedObj.RC,
+                     RC: reviews.length,
                      qualityRT: updatedObj.OKM[0].RT,
                      valueRT: updatedObj.OKM[1].RT,
                      oneRC: updatedObj.RCL[0].RC,
@@ -73,7 +75,7 @@ class Reviews extends Component {
                      fourRT: updatedObj.RCL[3].RT,
                      fiveRC: updatedObj.RCL[4].RC,
                      fiveRT: updatedObj.RCL[4].RT,
-                     totalReviews: updatedObj.RC
+                     totalReviews: reviews.length
                  },
                  product: {IMG:updatedObj.IMG, NM:updatedObj.NM},
                  questions: updatedQuestions,
@@ -148,16 +150,15 @@ class Reviews extends Component {
         // make Json-Ld
         let JsonLd = {
             "@context": "http://schema.org",
-              "@type": "AggregateRating",
-              "bestRating": "5",
-              "ratingCount": this.state.headerStats.RC,
-              "ratingValue": this.state.headerStats.OR,
-            "itemReviewed": {
-                "@type": "Product",
-                "image": this.state.product.IMG,
-                "name": this.state.product.NM
+              "@type": "Product",
+              "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": this.state.headerStats.OR,
+                "ratingCount": this.state.headerStats.RC
               },
-        }
+                "name": this.state.product.NM,
+                "image": this.state.product.IMG
+            }
           let reviewJsonLd = this.state.reviews.map((review, index) =>{ return {
             "@context": "http://schema.org/",
             "@type": "Review",
@@ -186,11 +187,26 @@ class Reviews extends Component {
         } else {
             if(this.state.haveReviews === false){
                 return (
-                    <div>
-                        <h2>
-                        No Reviews
-                        </h2>
-                    </div>
+                    <Aux>
+                        <h3 className="zevioo-h3">
+                        Αυθεντικές αξιολογήσεις 
+                        <span className="zevioo-title">από το</span> 
+                        <a href="https://www.zevioo.com/" target="_blank" rel="noopener noreferrer"><img src='https://zevioo.com/widgets/media/Logo.svg' className="zevioo-logo" alt="zevioo logo" height="16px"/></a>
+                        </h3>
+                        <div className="zevioo-no__reviews">
+                            <span className="zevioo-no__title">
+                            {"δεν υπάρχουν διαθέσιμες αξιολογήσεις γι'αυτο το προϊόν"}
+                            </span>
+                            <div className="zevioo-no__actions">
+                            <ProductReviewActions 
+                            clickReview={( e )=> this.writeReviewHandler(e)}
+                            clickQuestion={( e )=> this.askQuestionsHandler(e)}/>
+                            </div>
+                        </div>
+                        {this.state.writeReview? <WriteReview click={( e )=> this.writeReviewHandler(e)}/> : null }
+                        {this.state.askQuestions? <AskQuestion click={( e )=> this.askQuestionsHandler(e)}/> : null }
+
+                    </Aux>
                 )
             }
             return (

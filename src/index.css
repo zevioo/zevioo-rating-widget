@@ -28,6 +28,7 @@
 *, *:before, *:after {
   box-sizing: border-box;
 }
+
 .zevioo-none {
   display: none !important;
 }
@@ -1543,6 +1544,23 @@ img.zevioo-close-svg {
   text-align: center;
   position: relative;
 }
+/* if there is no reviews */
+.zevioo-no__reviews {
+  display: flex;
+  align-items: flex-start;
+  flex-flow: column;
+  text-align: left;
+  max-width: 400px;
+}
+.zevioo-no__title {
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: 100;
+}
+
+.zevioo-no__actions {
+margin-left: auto;
+}
 
 /* Media queries for zevioo-product-review */
 @media (max-width: 999px) {
@@ -1651,9 +1669,15 @@ textarea#zevioo-title-review {
 
 }
 @media (max-width: 450px){
+  .zevioo-no__reviews {
+    max-width: 275px;
+  }
   .zevioo-h3 {
     margin-bottom: 20px;
     font-size: 11px;
+}
+.zevioo-no__title {
+  font-size: 11px;
 }
 img.zevioo-logo {
   height: 11px;
@@ -1687,6 +1711,9 @@ img.zevioo-logo {
 
 .zevioo-button.zevioo-make-review {
   min-width: auto;
+}
+.zevioo-no__actions .zevioo-button.zevioo-make-review {
+  min-width: 140px;
 }
 .zevioo-button {
   font-size: 10px; 
@@ -1798,3 +1825,4 @@ img.zevioo-logo {
 .zevioo-single-review-body .zevioo-score-graph {
   width: 100px;
 }
+

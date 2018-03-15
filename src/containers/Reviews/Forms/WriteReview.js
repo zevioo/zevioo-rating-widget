@@ -348,7 +348,7 @@ class WriteReview extends Component {
                     <div className="zevioo-success-title">Ευχαριστούμε!</div>
                     <div className="zevioo-success-subTitle">
                     Σας έχουμε στείλει ένα email. Επιβεβαιώστε τον λογαριασμό σας
-                    κάνοντας κλικ στο σύνδεσμο επιβεβαίωσης και η ερώτησή σας θα δημοσιευθεί.
+                    κάνοντας κλικ στο σύνδεσμο επιβεβαίωσης και η αξιολόγηση σας θα δημοσιευθεί.
                     </div>
                 </div>
             )
