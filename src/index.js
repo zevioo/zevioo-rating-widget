@@ -7,7 +7,7 @@ import Banner from './Banner'
 import axios from 'axios';
 
 //Config 
-axios.defaults.baseURL = 'http://localzeviooservices/main.svc';
+axios.defaults.baseURL = 'https://api.zevioo.com/main.svc';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 
