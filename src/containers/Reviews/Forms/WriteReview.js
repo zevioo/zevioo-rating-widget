@@ -248,7 +248,7 @@ class WriteReview extends Component {
             NT: reviewForm.negativeReview.value,
             PT: reviewForm.positiveReview.value,
             KM: [{
-                    NM: "Value for money",
+                    NM: "Αξίζει τα λεφτά του",
                     RT: reviewForm.valueBox.value
                 },
                 {
@@ -348,7 +348,7 @@ class WriteReview extends Component {
                     <div className="zevioo-success-title">Ευχαριστούμε!</div>
                     <div className="zevioo-success-subTitle">
                     Σας έχουμε στείλει ένα email. Επιβεβαιώστε τον λογαριασμό σας
-                    κάνοντας κλικ στο σύνδεσμο επιβεβαίωσης και η ερώτησή σας θα δημοσιευθεί.
+                    κάνοντας κλικ στο σύνδεσμο επιβεβαίωσης και η αξιολόγηση σας θα δημοσιευθεί.
                     </div>
                 </div>
             )

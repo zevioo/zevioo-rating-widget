@@ -110,7 +110,7 @@ class AskQuestion extends Component {
         const EAN = render.getAttribute('data-ean');
         const questionForm = this.state.questionForm;
         
-        const newReview = JSON.stringify({
+        const newQuestion = JSON.stringify({
             USR: USR,
             PSW: PSW,
             EML: questionForm.email.value,
@@ -119,14 +119,15 @@ class AskQuestion extends Component {
             AG: questionForm.age.value,
             EAN: EAN,
             QT: questionForm.question.value,
-            SZ:true,
-            TM:false
+            TM:true
 
         })
-        axios.post( '/postquestion', newReview )
+        axios.post( '/postquestion', newQuestion )
         .then( response => {
+            console.log(response);
             this.setState( { loading: false, showSuccess: true } );
             this.setState(this.state);
+            
 
         } )
         .catch( error => {
@@ -262,10 +263,11 @@ class AskQuestion extends Component {
                                 value={this.state.questionForm.email.value}
                                 changed={(event) => this.inputChangedHandler(event, 'email')} />
                             </div>
-                            </div>
                             <div className="zevioo-submit__button">
-                            <button type="submit" className="zevioo-button zevioo-color__btn" form="zevioo-question-form" value="Submit">Δημοσιοποίηση</button>
+                            <button type="submit" className="zevioo-btn__ask zevioo-button zevioo-color__btn" form="zevioo-question-form" value="Submit">Δημοσιοποίηση</button>
                             </div>
+                            </div>
+
                         </div>
                     </div>
                 </form>

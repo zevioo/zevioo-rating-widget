@@ -11,6 +11,8 @@ import WriteReview from '../Reviews/Forms/WriteReview';
 import Loading from '../../components/Loading/Loading';
 import AskQuestion from '../Reviews/Forms/AskQuestion';
 
+import ProductReviewActions from '../Reviews/Header/ProductReviewActions';
+
 
 
 
@@ -47,6 +49,7 @@ class Reviews extends Component {
         })
              .then(response => {
                const obj = response.data;
+               console.log(obj)
                const reviews = obj.RL;
                const questions = obj.QL;
                const updatedQuestions = [...questions]
@@ -57,10 +60,10 @@ class Reviews extends Component {
                if(obj.RL.length > 0 ){ //Check if we have a list of reviews
                 this.setState({
                  reviews: updatedReviews,
-                 QE: false,
+                 QE: true,
                  headerStats: {
                      OR: updatedObj.OR,
-                     RC: updatedObj.RC,
+                     RC: reviews.length,
                      qualityRT: updatedObj.OKM[0].RT,
                      valueRT: updatedObj.OKM[1].RT,
                      oneRC: updatedObj.RCL[0].RC,
@@ -73,7 +76,7 @@ class Reviews extends Component {
                      fourRT: updatedObj.RCL[3].RT,
                      fiveRC: updatedObj.RCL[4].RC,
                      fiveRT: updatedObj.RCL[4].RT,
-                     totalReviews: updatedObj.RC
+                     totalReviews: reviews.length
                  },
                  product: {IMG:updatedObj.IMG, NM:updatedObj.NM},
                  questions: updatedQuestions,
@@ -88,6 +91,15 @@ class Reviews extends Component {
                }
              })
              };
+
+             // Append Structured Data 
+             appendLdJson = (data) => {
+                var script_tag = document.createElement('script');
+                script_tag.setAttribute("type","application/ld+json");
+                script_tag.innerHTML = JSON.stringify(data);
+                (document.getElementsByTagName("head")[0] || document.documentElement).appendChild(script_tag);
+             }
+
 
              askQuestionsHandler = (e) => {
                  e.preventDefault();
@@ -136,25 +148,76 @@ class Reviews extends Component {
                     }
 
     render() {
+        let JsonLd = {
+        "@context": "http://schema.org",
+            "@type": "Product",
+            "name": this.state.product.NM,
+            "image": this.state.product.IMG,
+            "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": this.state.headerStats.OR,
+            "ratingCount": this.state.headerStats.RC
+            },
+            "review": this.state.reviews.map((review, index) =>{ return {
+                "@type": "Review",
+                "description": review.NT && review.PT,
+                "name": review.TT,
+                "itemReviewed": {
+                  "@type": "Product",
+                  "name": this.state.product.NM
+                },
+                "author": {
+                  "@type": "Person",
+                  "name": review.FN
+                },
+                "datePublished": review.DT.slice(0,10),
+                "reviewRating": {
+                  "@type": "Rating",
+                  "bestRating": "5",
+                  "ratingValue": review.RT,
+                  "worstRating": "1"
+                }
+              }
+                  })
+            
+        }
         let toRender = null;
         if (this.state.loading) {
             toRender = <Loading />;
         } else {
             if(this.state.haveReviews === false){
                 return (
-                    <div>
-                        <h2>
-                        No Reviews
-                        </h2>
-                    </div>
+                    <Aux>
+                        <h3 className="zevioo-h3">
+                        Αυθεντικές αξιολογήσεις 
+                        <span className="zevioo-title">από το</span> 
+                        <img src='https://zevioo.com/widgets/media/Logo.svg' className="zevioo-logo" alt="zevioo logo" height="16px"/>
+                        </h3>
+                        <div className="zevioo-no__reviews">
+                            <span className="zevioo-no__title">
+                            {"δεν υπάρχουν διαθέσιμες αξιολογήσεις γι'αυτο το προϊόν"}
+                            </span>
+                            <div className="zevioo-no__actions">
+                            <ProductReviewActions 
+                            clickReview={( e )=> this.writeReviewHandler(e)}
+                            clickQuestion={( e )=> this.askQuestionsHandler(e)}/>
+                            </div>
+                        </div>
+                        {this.state.writeReview? <WriteReview click={( e )=> this.writeReviewHandler(e)}/> : null }
+                        {this.state.askQuestions? <AskQuestion click={( e )=> this.askQuestionsHandler(e)}/> : null }
+
+                    </Aux>
                 )
             }
             return (
+                
                 <Aux>
+                {this.appendLdJson(JsonLd)}
+                
                 <h3 className="zevioo-h3">
                 Αυθεντικές αξιολογήσεις 
                 <span className="zevioo-title">από το</span> 
-                <a href="https://www.zevioo.com/" target="_blank" rel="noopener noreferrer"><img src='https://zevioo.com/widgets/media/Logo.svg' className="zevioo-logo" alt="zevioo logo" height="16px"/></a>
+                <img src='https://zevioo.com/widgets/media/Logo.svg' className="zevioo-logo" alt="zevioo logo" height="16px"/>
                 </h3>
                 <ReviewsHeader 
                 headerStats={this.state.headerStats} 

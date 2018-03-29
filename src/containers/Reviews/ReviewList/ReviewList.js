@@ -4,6 +4,8 @@ import Aux from '../../../hoc/Aux';
 import {percentage,filterReview,dateToDay} from '../../../helpers/Helpers';
 import ThumbsForm from '../Forms/ThumbsForm';
 import Verify from '../../../components/Svg/verify';
+import Negative from '../../../components/Svg/Negative';
+import Positive from '../../../components/Svg/Positive';
 
 
 
@@ -25,19 +27,36 @@ class ReviewList extends Component {
       }
 
 render(){
+        const negativeIcon = (
+            <Aux>
+            <Negative
+            width="15px"
+            height="15px"
+            fill="#ff0202"
+            />
+            </Aux>  
+        )
+        const positiveIcon = (
+            <Aux>
+            <Positive
+                width="15px"
+                height="15px"
+                fill="#7bcc70"
+            />
+            </Aux>  
+        )
         const verifyIcon = ( 
             <Aux> 
             <span className="zevioo-verify__icon">
             <Verify
-            width="20px"
-            height="20px"
+            width="17px"
+            height="17px"
             fill="var(--green)"
             stroke="var(--green)"
             strokeWidth= "5px" />
             </span>                             
             <span className="zevioo-verify__text">Επιβεβαιωμένη αγορά</span>
             </Aux> 
-
         )
 
         //Sort reviews
@@ -135,58 +154,59 @@ render(){
                 return null;
             }
         }
-
         const exportReviews = currentReviews.map((review,index) => {
             return (
-               <div key={index} itemProp="review" itemScope itemType="http://schema.org/Review" className="zevioo-single-review" > 
+               <div key={index} className="zevioo-single-review" > 
                <div className="zevioo-single-review-header zevioo-clearfix">
                    <div className="zevioo-pull__left">
-                       <h2 itemProp="name" className="zevioo-review-title">
+                    {
+                      (review.TT)? <h2 className="zevioo-review-title">
                        {review.TT}
-                       </h2>
-                       <div itemProp="reviewRating" itemScope itemType="http://schema.org/Rating" className="zevioo-star-ratings">
+                       </h2> : null
+                    }
+                       
+                       <div className="zevioo-star-ratings">
                            <div className="zevioo-star-ratings-top" style={{width: percentage(review.RT ,5)+'%'}}><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
                            <div className="zevioo-star-ratings-bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-                           <span className="zevioo-none" itemProp="ratingValue">{review.RT}</span>
-                           <span className="zevioo-none" itemProp="bestRating">5</span>
+                           <span className="zevioo-none">{review.RT}</span>
+                           <span className="zevioo-none">5</span>
                        </div>
+                       {(review.CPF === true) && 
+                        <div className="zevioo-verify-buyer">
+                            {verifyIcon }
+                         </div>
+                        }
                        
                    </div>
                    <div className="zevioo-pull__right">
-                   {(review.CPF === true) && 
-                    <div className="zevioo-verify-buyer">
-                        {verifyIcon }
-                     </div>
-                    }
-                       <div itemProp="datePublished" content={review.DT} className="zevioo-review-date">
+                       <div content={review.DT} className="zevioo-review-date">
                        {dateToDay(review.DT)}
                        </div>
                        <div className="zevioo-buyer-info">
                        <div className="zevioo-buyer-name">
-                        Από: {review.FN + " " + review.LN}
+                        {review.FN + " " + review.LN}
                        </div>
                     </div>
                    </div>
                </div>
                <div className="zevioo-single-review-body">
-                   <div itemProp="reviewBody" className="zevioo-review-content">
+                   <div className="zevioo-review-content">
                        <div className="zevioo-review-pn">
                        {review.PT &&
                            <p className="zevioo-review-positive">
-                           <span className="zevioo-positive"> + </span><span> {review.PT} </span>
+                           <span className="zevioo-positive"> {positiveIcon} </span><span> {review.PT} </span>
                            </p>
                        }
                        {review.NT &&
                            <p className="zevioo-review-negative">
-                           <span className="zevioo-negative"> {review.NT ? '-' : ''} </span><span> {review.NT} </span>
+                           <span className="zevioo-negative"> {negativeIcon} </span><span> {review.NT} </span>
                            </p>
                        }
                        </div>
                        <div className="zevioo-container__flex ">
                             <div className="zevioo-review-bars">
-                                    {bars(review.KM, 1)}
-                                    {bars(review.KM, 0)}
-                                    
+                                {review.KM[1] ? bars(review.KM, 1) : null}
+                                {review.KM[0] ? bars(review.KM, 0) : null}                              
                             </div>
                             <ThumbsForm 
                                 likeCount={review.LCN} 
@@ -195,9 +215,6 @@ render(){
                        </div>
                     </div>
                 </div>
-                <span className="zevioo-none" itemProp="publisher" itemScope itemType="http://schema.org/Organization">
-                <meta itemProp="name" content="zevioo" />
-                </span>
              </div>
             )
         })

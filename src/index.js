@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import Stars from './Stars'
+import Banner from './Banner'
 import axios from 'axios';
 
 //Config 
-axios.defaults.baseURL = 'https://api.zevioo.com/main.svc';
+axios.defaults.baseURL = 'http://localzeviooservices/main.svc';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 
@@ -20,6 +21,7 @@ style_tag.setAttribute("href","https://zevioo.com/widgets/css/zeviooRatingWidget
 
 const zeviooRating = document.querySelectorAll('.zevioo-rating')
 const zeviooReviews = document.getElementById('zevioo-reviews')
+const zeviooBanner = document.getElementById('zevioo-banner')
 
 if(zeviooRating) {
     // zeviooRating.forEach(function (element, index) {
@@ -34,5 +36,7 @@ if(zeviooRating) {
 if(zeviooReviews) {
     ReactDOM.render(<App />, zeviooReviews);
 }
-
+if(zeviooBanner) {
+    ReactDOM.render(<Banner />, zeviooBanner);
+}
 

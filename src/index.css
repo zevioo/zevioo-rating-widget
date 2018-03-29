@@ -22,12 +22,14 @@
 
 }
 
+
 * {
   box-sizing: border-box;
 }
 *, *:before, *:after {
   box-sizing: border-box;
 }
+
 .zevioo-none {
   display: none !important;
 }
@@ -475,21 +477,19 @@ span.zevioo-verify__text {
     order: 3;
     margin-left: auto;
   }
-  .zevioo-verify-buyer{
+  /* .zevioo-verify-buyer{
     order: 2;
     margin-left: 10px;
     margin-bottom: -2px;
-  }
+  } */
 }
-@media (max-width: 450px) {
-  span.zevioo-verify__text {
-    display: none;
-  }
+/* @media (max-width: 450px) {
+
   .zevioo-verify-buyer {
     vertical-align: unset;
     margin-bottom: -5px;
 }
-}
+} */
 
 
 .zevioo-single-review:last-child::after {
@@ -575,6 +575,18 @@ display:block;
   padding-top: 2px;
 }
 
+.zevioo-single-question-header .zevioo-buyer-name {
+  display: inline-block;
+}
+.zevioo-single-question-header .zevioo-verify-buyer {
+  margin-left: 5px;
+  margin-right: 0;
+  vertical-align: top;
+}
+.zevioo-single-question-header .zevioo-pull__right {
+  align-items: flex-start;
+}
+
 .zevioo-verify-buyer span {
   color: rgb(82, 185, 82);
   color: var(--green);
@@ -600,6 +612,7 @@ display:block;
 }
 .zevioo-helpful {
   margin-left: auto;
+  margin-bottom: 5px;
   z-index: 500;
   color: hsl(0, 0%, 40%);
   color: var(--hslGray);
@@ -613,31 +626,50 @@ span.zevioo-helpful-title {
   font-size: 13px;
   font-weight: 100;
 }
-@media (max-width: 800px){
-  .zevioo-container__flex {
-    flex-direction: column;
+span.zevioo-was-helpful {
+  margin-left: auto;
+  font-size: 12px;
+  font-weight: 100;
+  color: #666;
+  color: var(--hslGray);
+  margin-right: -20px;
+}
+@media (max-width: 700px){
+.zevioo-container__flex .zevioo-product-score-bar {
+  display: inline-block;
+  margin-right: 10px;
+}
+.zevioo-container__flex .zevioo-score-graph {
+width: 100px;
+}
+}
+@media (max-width: 600px){
+  .zevioo-helpful-title { 
+    display: none;
+  }
+ }
+@media (max-width: 400px){
+  .zevioo-review-bars {
+    max-width: 125px;
   }
   .zevioo-helpful {
-    margin-top: 10px;
-    margin-left: auto;
+    margin: auto;
+    margin-right: 0;
+    margin-bottom: 0;
 
   }
   .zevioo-helpful-title {
     font-size: 11px;
   }
-  .zevioo-container__flex .zevioo-product-score-bar {
-    display: inline-block;
-    margin-right: 10px;
-}
-.zevioo-container__flex .zevioo-score-graph {
-  width: 100px;
-}
-}
-@media (max-width:450px) {
-  .zevioo-helpful-title { 
-    display: none;
+  .zevioo-thumb {
+    height: 13px;
+    margin-left: 10px;
+  }
+  .zevioo-thumb-up, .zevioo-thumb-down {
+    font-size: 13px;
   }
 }
+
 span.zevioo-review-title {
   margin: auto;
   margin-left: 0;
@@ -662,7 +694,6 @@ span.zevioo-review-title {
 
 .zevioo-question-content {
   display: flex;
-  align-items: center;
   flex-flow: row wrap;
   padding: 20px;
 }
@@ -946,6 +977,12 @@ input.zevioo-button:disabled {
 a.zevioo-button {
   margin-left: 10px;
 }
+.zevioo-btn__ask:disabled {
+  cursor: not-allowed !important;
+  background-color: #cccccc;
+  color: #666666;
+
+}
 /* Write Review */
 .zevioo-write-review-wrapper {
   position: relative;
@@ -1219,6 +1256,9 @@ input#user_year {
 .zevioo-form-group__flex_end {
   display: flex;
   align-items: flex-end;
+}
+#zevioo-question-form .zevioo-form-group__flex_end {
+  margin-top: 30px;
 }
 .zevioo-form-group__flex_end .zevioo-half__flex_end:nth-child(2),
 .zevioo-form-group__flex_end .zevioo-half__flex_end:nth-child(3) {
@@ -1543,6 +1583,23 @@ img.zevioo-close-svg {
   text-align: center;
   position: relative;
 }
+/* if there is no reviews */
+.zevioo-no__reviews {
+  display: flex;
+  align-items: flex-start;
+  flex-flow: column;
+  text-align: left;
+  max-width: 400px;
+}
+.zevioo-no__title {
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: 100;
+}
+
+.zevioo-no__actions {
+margin-left: auto;
+}
 
 /* Media queries for zevioo-product-review */
 @media (max-width: 999px) {
@@ -1559,7 +1616,7 @@ img.zevioo-close-svg {
 }
 
 
-@media (max-width: 850px) {
+@media (max-width: 930px) {
   .zevioo-avg-text {
     display: block;
     margin-right: 0;
@@ -1651,9 +1708,15 @@ textarea#zevioo-title-review {
 
 }
 @media (max-width: 450px){
+  .zevioo-no__reviews {
+    max-width: 275px;
+  }
   .zevioo-h3 {
     margin-bottom: 20px;
     font-size: 11px;
+}
+.zevioo-no__title {
+  font-size: 11px;
 }
 img.zevioo-logo {
   height: 11px;
@@ -1687,6 +1750,9 @@ img.zevioo-logo {
 
 .zevioo-button.zevioo-make-review {
   min-width: auto;
+}
+.zevioo-no__actions .zevioo-button.zevioo-make-review {
+  min-width: 140px;
 }
 .zevioo-button {
   font-size: 10px; 
@@ -1797,4 +1863,147 @@ img.zevioo-logo {
 
 .zevioo-single-review-body .zevioo-score-graph {
   width: 100px;
+}
+
+/* Test Style */
+.zevioo-review-bars {
+  padding-top: 5px;
+}
+
+
+
+/* Banner Css */
+.zevioo-clearfix {
+  overflow: auto;
+}
+.zevioo-clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.zevioo-banner {
+  background: #ff0d61;
+  width: 100%;
+  min-width: 100%;
+  color: #fff;
+  height: auto;
+  font-family: Helvetica, Arial, sans-serif;
+}
+svg#close-icon-svg {
+  stroke-width: 2px;
+  stroke: #fff;
+}
+.zevioo-banner__container {
+  display: block;
+  padding: 10px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+img.zevioo-banner-logo {
+  padding-right: 10px;
+}
+.zevioo-banner__left {
+  float: left;
+}
+.zeviooStar-svg,
+.zevioo-banner-close svg
+ {
+  vertical-align: text-bottom;
+}
+span.zevioo-logo-svg svg {
+  vertical-align: inherit;
+}
+span.zevioo-logo-svg {
+  margin-left: 5px;
+}
+.zevioo-banner__right {
+  float: right;
+  padding: 5px;
+}
+span.zevioo-PR__counter {
+    margin-left: 10px;
+}
+.zevioo-banner-close {
+  margin-left: 20px;
+}
+.zevioo-banner strong {
+  font-size: 20px;
+}
+
+@media (max-width:720px) {
+  .zeviooStar-svg {
+    width: 25px;
+  }
+  span.zevioo-PR__counter,
+  span.zevioo-CX__score {
+    font-size: 14px;
+}
+.zevioo-banner strong {
+  font-size: 20px;
+}
+.zevioo-banner__right {
+  padding: 0;
+}
+}
+@media (max-width:670px) {
+  .zeviooStar-svg {
+    width: 25px;
+  }
+  span.zevioo-PR__counter,
+  span.zevioo-CX__score {
+    font-size: 12px;
+}
+.zevioo-banner strong {
+  font-size: 16px;
+}
+.zevioo-banner__right {
+  padding: 0;
+}
+}
+@media (max-width:590px) {
+  .zeviooStar-svg {
+    width: 20px;
+  }
+  span.zevioo-PR__counter,
+  span.zevioo-CX__score {
+    font-size: 10px;
+}
+.zevioo-banner strong {
+  font-size: 13px;
+}
+span.zevioo-logo-svg svg {
+  width: 40px;
+}
+.zevioo-banner__right {
+  padding: 0;
+}
+svg#close-icon-svg {
+  width: 15px;
+}
+}
+
+@media (max-width:465px) {
+  .zevioo-banner__container {
+    position: relative;
+  }
+  span.zevioo-banner-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+.zevioo-banner__left,
+.zevioo-banner__right {
+  display: block;
+  float: none;
+}
+span.zevioo-PR__counter,
+span.zevioo-CX__score {
+  font-size: 10px;
+}
+.zevioo-banner strong {
+font-size: 10px;
+}
+.zevioo-banner__right {
+  margin-left: 30px;
+}
 }

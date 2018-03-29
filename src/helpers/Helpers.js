@@ -239,11 +239,11 @@ export const dateToDay = (date) => {
     const dayCount = remainder % y2; // day count
     const year = (x - remainder) / y;
     const month = (remainder - dayCount) / y2;
-    if(dayCount !== 0){
-        if(dayCount === 1){
-            return (dayCount + ' μέρα πριν')
+    if(year !== 0){
+        if(year === 1){
+            return (year + ' χρόνος πριν')
         } else {
-            return (dayCount + ' μέρες πριν')
+            return (year + ' χρόνια πριν')
         }
         
     }
@@ -255,14 +255,15 @@ export const dateToDay = (date) => {
         }
         
     }
-    if(year !== 0){
-        if(year === 1){
-            return (year + ' χρόνος πριν')
+    if(dayCount !== 0){
+        if(dayCount === 1){
+            return (' Σήμερα')
         } else {
-            return (year + ' χρόνια πριν')
+            return (dayCount + ' μέρες πριν')
         }
         
     }
+
 
     }
     

@@ -25,8 +25,8 @@ render(){
 
     const verifyIcon = (                                
         <Verify
-        width="20px"
-        height="20px"
+        width="16px"
+        height="16px"
         fill="var(--green)"
         stroke="var(--green)"
         strokeWidth= "5px" />
@@ -100,11 +100,6 @@ render(){
                    
                </div>
                <div className="zevioo-pull__right">
-                {(question.CP === 1) && 
-                    <div className="zevioo-verify-buyer">
-                        {verifyIcon }
-                    </div>
-                    }
                    <div className="zevioo-question-date">
                    {dateToDay(question.CD)}
                    </div>
@@ -112,12 +107,30 @@ render(){
                    <div className="zevioo-buyer-name">
                    {question.FN}
                    </div>
-               
+                   {(question.CP === 1) && 
+                    <div className="zevioo-verify-buyer">
+                        {verifyIcon }
+                    </div>
+                    }
                 </div>
                </div>
            </div>
            {
             question.AL.map((answer, index) => {
+                let helpful;
+                if (answer.UST === 1) {
+                    helpful = (
+                        <span className="zevioo-was-helpful">
+                        <img src='https://zevioo.com/widgets/media/thumbUp.svg' className="zevioo-thumb" alt="zevioo Thumb up" height="20px" style={{marginRight: '5px'}}/> Ο χρήστης {question.FN} βρήκε την απάντηση χρήσιμη.
+                        </span>
+                    )
+                }else if (answer.UST === -1) {
+                    helpful = (
+                        <span className="zevioo-was-helpful">
+                        <img src='https://zevioo.com/widgets/media/thumbDown.svg' className="zevioo-thumb" alt="zevioo Thumb Down" height="20px" style={{marginRight: '5px', marginBottom: '-5px'}}/> Ο χρήστης {question.FN} δεν βρήκε την απάντηση χρήσιμη.
+                        </span>
+                    )
+                }
                 return ( 
                     <div key={index} className="zevioo-single-question-body">
                     <div className="zevioo-question-content">
@@ -130,6 +143,7 @@ render(){
                         <span className="zevioo-question-reply" > 
                             <p>{answer.AT}</p>
                         </span>
+                        {helpful}
                     </div>
                    </div>
                 )
@@ -162,7 +176,7 @@ render(){
             </div>
             <div className="zevioo-paggination">
                 <div id="zevioo-pager">
-                    {(this.state.lastPager !== this.state.currentPage) ? <a onClick={(e) => pageNextHandleClick(e)} >Περισσότερες ερωτήσεις</a> : ''}
+                    {(this.state.lastPager !== this.state.currentPage && this.props.questions.length > 2) ? <a onClick={(e) => pageNextHandleClick(e)} >Περισσότερες ερωτήσεις</a> : ''}
                 </div>
             </div>
         </div>

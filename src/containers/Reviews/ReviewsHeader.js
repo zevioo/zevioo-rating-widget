@@ -13,12 +13,12 @@ const reviewsHeader = (props) => {
     // const statsArray = [].concat(props.headerStats)
         return (
             <Aux>
-            <div itemScope itemType="http://schema.org/Product" className="zevioo-product zevioo-none" style={{display: 'none !important'}}>
-                <img itemProp="image" src={props.product.IMG} alt={props.product.NM + " Image"} />
-                <h2 itemProp="name">{props.product.NM}</h2>
+            <div className="zevioo-product zevioo-none" style={{display: 'none !important'}}>
+                <img src={props.product.IMG} alt={props.product.NM + " Image"} />
+                <h2>{props.product.NM}</h2>
             </div>
             <div className="zevioo-product-review">
-                <div itemProp="aggregateRating" itemScope itemType="http://schema.org/AggregateRating" className="zevioo-product-rating">
+                <div className="zevioo-product-rating">
                     <ProductRatingAvg 
                         OR={props.headerStats.OR}
                         RC={props.headerStats.RC}
