@@ -159,12 +159,18 @@ render(){
                <div key={index} className="zevioo-single-review" > 
                <div className="zevioo-single-review-header zevioo-clearfix">
                    <div className="zevioo-pull__left">
+<<<<<<< HEAD
                     {
                       (review.TT)? <h2 className="zevioo-review-title">
                        {review.TT}
                        </h2> : null
                     }
                        
+=======
+                       <h2 className="zevioo-review-title">
+                       {review.TT}
+                       </h2>
+>>>>>>> 773ccd35708cb9248e5f54b6533ac89381ffc685
                        <div className="zevioo-star-ratings">
                            <div className="zevioo-star-ratings-top" style={{width: percentage(review.RT ,5)+'%'}}><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
                            <div className="zevioo-star-ratings-bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
@@ -179,12 +185,24 @@ render(){
                        
                    </div>
                    <div className="zevioo-pull__right">
+<<<<<<< HEAD
+=======
+                   {(review.CPF === true) && 
+                    <div className="zevioo-verify-buyer">
+                        {verifyIcon }
+                     </div>
+                    }
+>>>>>>> 773ccd35708cb9248e5f54b6533ac89381ffc685
                        <div content={review.DT} className="zevioo-review-date">
                        {dateToDay(review.DT)}
                        </div>
                        <div className="zevioo-buyer-info">
                        <div className="zevioo-buyer-name">
+<<<<<<< HEAD
                         {review.FN + " " + review.LN}
+=======
+                        Από:{review.FN + " " + review.LN}
+>>>>>>> 773ccd35708cb9248e5f54b6533ac89381ffc685
                        </div>
                     </div>
                    </div>

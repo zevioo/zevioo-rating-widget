@@ -148,6 +148,7 @@ class Reviews extends Component {
                     }
 
     render() {
+<<<<<<< HEAD
         let JsonLd = {
         "@context": "http://schema.org",
             "@type": "Product",
@@ -181,6 +182,42 @@ class Reviews extends Component {
                   })
             
         }
+=======
+        // make Json-Ld
+        let JsonLd = {
+            "@context": "http://schema.org",
+              "@type": "Product",
+              "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": this.state.headerStats.OR,
+                "ratingCount": this.state.headerStats.RC
+              },
+                "name": this.state.product.NM,
+                "image": this.state.product.IMG
+            }
+          let reviewJsonLd = this.state.reviews.map((review, index) =>{ return {
+            "@context": "http://schema.org/",
+            "@type": "Review",
+            "description": review.NT && review.PT,
+            "name": review.TT,
+            "itemReviewed": {
+              "@type": "Product",
+              "name": this.state.product.NM
+            },
+            "author": {
+              "@type": "Person",
+              "name": review.FN
+            },
+            "datePublished": review.DT.slice(0,10),
+            "reviewRating": {
+              "@type": "Rating",
+              "bestRating": "5",
+              "ratingValue": review.RT,
+              "worstRating": "1"
+            }
+          }
+              })
+>>>>>>> 773ccd35708cb9248e5f54b6533ac89381ffc685
         let toRender = null;
         if (this.state.loading) {
             toRender = <Loading />;
@@ -191,7 +228,11 @@ class Reviews extends Component {
                         <h3 className="zevioo-h3">
                         Αυθεντικές αξιολογήσεις 
                         <span className="zevioo-title">από το</span> 
+<<<<<<< HEAD
                         <img src='https://zevioo.com/widgets/media/Logo.svg' className="zevioo-logo" alt="zevioo logo" height="16px"/>
+=======
+                        <a href="https://www.zevioo.com/" target="_blank" rel="noopener noreferrer"><img src='https://zevioo.com/widgets/media/Logo.svg' className="zevioo-logo" alt="zevioo logo" height="16px"/></a>
+>>>>>>> 773ccd35708cb9248e5f54b6533ac89381ffc685
                         </h3>
                         <div className="zevioo-no__reviews">
                             <span className="zevioo-no__title">
@@ -213,6 +254,10 @@ class Reviews extends Component {
                 
                 <Aux>
                 {this.appendLdJson(JsonLd)}
+<<<<<<< HEAD
+=======
+                {this.appendLdJson(reviewJsonLd)}
+>>>>>>> 773ccd35708cb9248e5f54b6533ac89381ffc685
                 
                 <h3 className="zevioo-h3">
                 Αυθεντικές αξιολογήσεις 
