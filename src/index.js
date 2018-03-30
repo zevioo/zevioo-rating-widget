@@ -7,17 +7,17 @@ import Banner from './Banner'
 import axios from 'axios';
 
 //Config 
-axios.defaults.baseURL = 'https://api.zevioo.com/main.svc';
+axios.defaults.baseURL = 'http://localzeviooservices/main.svc';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 
 
 
 // Append Style 
-var style_tag = document.createElement('link');
-style_tag.setAttribute("rel","stylesheet");
-style_tag.setAttribute("href","https://zevioo.com/widgets/css/zeviooRatingWidget.css");
-(document.getElementsByTagName("head")[0] || document.documentElement).appendChild(style_tag);
+// var style_tag = document.createElement('link');
+// style_tag.setAttribute("rel","stylesheet");
+// style_tag.setAttribute("href","https://zevioo.com/widgets/css/zeviooRatingWidget.css");
+// (document.getElementsByTagName("head")[0] || document.documentElement).appendChild(style_tag);
 
 const zeviooRating = document.querySelectorAll('.zevioo-rating')
 const zeviooReviews = document.getElementById('zevioo-reviews')

@@ -154,6 +154,21 @@ render(){
                 return null;
             }
         }
+
+        // if we dont have questions
+        const firstReview = (
+            <div className="zevioo-review__first">
+                <div className="zevioo-review__first__title">Γράψτε εσεις την πρώτη ερώτηση</div>
+                <div className="zevioo-review__first__btn">
+                <div className="zevioo-button zevioo-ask" style={this.props.questionBtn?{backgroundColor: "var(--zeviooColor)"}: null} onClick={this.props.clickQuestion}>
+                    <span className="zevioo-button-icon">
+                        <img src='https://zevioo.com/widgets/media/comment.svg'  className="zevioo-icons" alt="zevioo Comment" height="20px"/>
+                    </span>
+                    <span className="zevioo-button-text"> Ερώτηση </span>
+                </div>
+                </div>
+            </div>
+        )
         const exportReviews = currentReviews.map((review,index) => {
             return (
                <div key={index} className="zevioo-single-review" > 
@@ -241,7 +256,7 @@ render(){
                     </div>
                 </div>
                 <div className="zevioo-reviews-list">
-                {exportReviews}
+                {currentReviews.length ? exportReviews : firstReview}
                 </div>
                 <div className="zevioo-paggination">
                     <div id="zevioo-pager">

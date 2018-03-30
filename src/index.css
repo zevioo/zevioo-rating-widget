@@ -714,8 +714,8 @@ span.zevioo-review-title {
 }
 .zevioo-eshop__img {
   background-image: url(https://admin.zevioo.com/data/suppliers/49fc32c…/newlogo.png);
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   background-size: contain;
   background-repeat: no-repeat;
 }
@@ -726,6 +726,25 @@ span.zevioo-review-title {
   font-weight: 100;
   color: hsl(0, 0%, 40%);
   color: var(--hslGray);
+}
+
+.zevioo-question__first,
+.zevioo-review__first
+ {
+  width: 100%;
+  display: block;
+  height: auto;
+}
+.zevioo-question__first__title,
+.zevioo-review__first__title {
+  margin: 30px auto;
+  font-size: 20px;
+  font-weight: 800;
+  text-align: center;
+}
+.zevioo-question__first__btn,
+.zevioo-review__first__btn {
+  text-align: center;
 }
 
 p.zevioo-review-positive,

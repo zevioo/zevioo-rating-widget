@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import '../../../index.css';
 import {dateToDay} from '../../../helpers/Helpers';
 import Verify from '../../../components/Svg/verify';
+import Aux from '../../../hoc/Aux';
 
 
 class QuestionList extends Component {
@@ -152,6 +153,20 @@ render(){
          </div>
         )
     })
+        // if we dont have questions
+        const firstQuestion = (
+            <div className="zevioo-question__first">
+                <div className="zevioo-question__first__title">Γράψτε εσεις την πρώτη ερώτηση</div>
+                <div className="zevioo-question__first__btn">
+                <div className="zevioo-button zevioo-ask" style={this.props.questionBtn?{backgroundColor: "var(--zeviooColor)"}: null} onClick={this.props.clickQuestion}>
+                    <span className="zevioo-button-icon">
+                        <img src='https://zevioo.com/widgets/media/comment.svg'  className="zevioo-icons" alt="zevioo Comment" height="20px"/>
+                    </span>
+                    <span className="zevioo-button-text"> Ερώτηση </span>
+                </div>
+                </div>
+            </div>
+        )
 
     const exportQuestionsComponent = (
 
@@ -172,7 +187,7 @@ render(){
                 </div>
             </div>
             <div className="zevioo-questions-list">
-            {exportQuestions}
+            {questions.length ? exportQuestions: firstQuestion }
             </div>
             <div className="zevioo-paggination">
                 <div id="zevioo-pager">
@@ -183,9 +198,9 @@ render(){
     );
 
 return (
-        <div>
+        <Aux>
         {exportQuestionsComponent}
-        </div>
+        </Aux>
     )
 
     }

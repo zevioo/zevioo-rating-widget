@@ -33,6 +33,7 @@ class Reviews extends Component {
         filterReviewNum: 5,
         displayReviews: true,
         displayQuestions: false
+        
     };
 
     
@@ -59,7 +60,7 @@ class Reviews extends Component {
                if(obj.RL.length > 0 ){ //Check if we have a list of reviews
                 this.setState({
                  reviews: updatedReviews,
-                 QE: false,
+                 QE: true,
                  headerStats: {
                      OR: updatedObj.OR,
                      RC: reviews.length,
@@ -250,6 +251,8 @@ class Reviews extends Component {
                         questions={this.state.questions}
                         displayReviewsClick={( e )=> this.displayReviewsHandler(e)}
                         displayQuestionsClick={( e )=> this.displayQuestionsHandler(e)}
+                        clickQuestion={( e )=> this.askQuestionsHandler(e)}
+                        questionBtn={this.state.askQuestions}
                     />: null }
                 </Aux>
             )
